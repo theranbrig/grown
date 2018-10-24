@@ -19,8 +19,8 @@ class HomeInformationBox extends React.Component {
 						text={true}
 						fluid
 						textAlign="center"
-						className="wow slideInLeft "
-						verticalAlign="center"
+						className="wow slideInLeft"
+						verticalalign="center"
 						data-wow-duration="2s">
 						<InformationBox>
 							<Header as="h2">{this.props.header}</Header>
