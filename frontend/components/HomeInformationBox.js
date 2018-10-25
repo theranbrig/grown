@@ -33,7 +33,7 @@ class HomeInformationBox extends React.Component {
 					<ImageBox>
 						<Image
 							src={this.props.image}
-							responsive
+							responsive="true"
 							centered
 							className="wow fadeInLeft point-image"
 							data-wow-duration="2s"
@@ -47,7 +47,8 @@ class HomeInformationBox extends React.Component {
 }
 Grid.PropTypes = {
 	centered: PropTypes.bool,
-	text: PropTypes.bool
+	text: PropTypes.bool,
+	responsive: PropTypes.bool
 };
 
 export default HomeInformationBox;
