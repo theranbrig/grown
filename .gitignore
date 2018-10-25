@@ -10,7 +10,6 @@ backend/.vscode
 frontend/.vscode
 
 # Library
-frontend/lib
 .next
 
 .DS_Store
