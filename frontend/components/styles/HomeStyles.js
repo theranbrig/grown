@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const MainGrid = styled.div`
+	overflow-x: hidden;
 	.two .column {
 		padding: 30px;
 	}
 	.ui.container h2 {
 		font-family: 'Michroma', sans-serif;
 		padding: 20px 0 0;
+	}
+	div.sixteen.wide.column.title-splash {
+		padding: 0 !important;
 	}
 `;
 
@@ -17,6 +21,7 @@ const MainPhoto = styled.div`
 	height: 400px;
 	width: 100%;
 	position: relative;
+	padding: 0;
 `;
 
 const MainText = styled.div`

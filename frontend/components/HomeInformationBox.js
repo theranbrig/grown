@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Header, Container, Image } from 'semantic-ui-react';
-import InformationBox from './styles/InformationBoxStyles';
+import { InformationBox, ImageBox } from './styles/InformationBoxStyles';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -13,13 +13,13 @@ class HomeInformationBox extends React.Component {
 	}
 	render() {
 		return (
-			<Grid.Row columns={2}>
+			<Grid.Row centered columns={2}>
 				<Grid.Column>
 					<Container
 						text={true}
 						fluid
 						textAlign="center"
-						className="wow slideInLeft"
+						className="wow fadeInRight"
 						verticalalign="center"
 						data-wow-duration="2s">
 						<InformationBox>
@@ -30,14 +30,16 @@ class HomeInformationBox extends React.Component {
 					</Container>
 				</Grid.Column>
 				<Grid.Column>
-					<Image
-						src={this.props.image}
-						size="large"
-						centered={true}
-						className="wow slideInRight"
-						data-wow-duration="2s"
-						verticalAlign="middle"
-					/>
+					<ImageBox>
+						<Image
+							src={this.props.image}
+							responsive="true"
+							centered
+							className="wow fadeInLeft point-image"
+							data-wow-duration="2s"
+							verticalAlign="middle"
+						/>
+					</ImageBox>
 				</Grid.Column>
 			</Grid.Row>
 		);
@@ -45,7 +47,8 @@ class HomeInformationBox extends React.Component {
 }
 Grid.PropTypes = {
 	centered: PropTypes.bool,
-	text: PropTypes.bool
+	text: PropTypes.bool,
+	responsive: PropTypes.bool
 };
 
 export default HomeInformationBox;
