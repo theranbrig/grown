@@ -1,7 +1,19 @@
+# import * from './generated/prisma.graphql'
+
 type Mutation {
-	hi: String
+	createFarm(
+		name: String
+		description: String
+		location: String
+		email: String
+		phone: String
+		image: String
+		website: String
+	): Farm!
 }
 
 type Query {
-	hi: String
+	farms(where: FarmWhereInput, orderBy: FarmOrderByInput, skip: Int, first: Int): [Farm]!
+	farm(where: FarmWhereUniqueInput!): Farm
+	farmsConnection(where: FarmWhereInput): FarmConnection!
 }

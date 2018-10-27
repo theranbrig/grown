@@ -6,10 +6,10 @@ const Nav = () => (
 		<Link href="/">
 			<a>Home</a>
 		</Link>
-		{/* <Link href="/farms">
+		<Link href="/farms">
 			<a>Farms</a>
 		</Link>
-		<Link href="/markets">
+		{/*<Link href="/markets">
 			<a>Markets</a>
 		</Link>
 		<Link href="/orders">
