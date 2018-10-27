@@ -1,5 +1,10 @@
-#endpoint: ${env:PRISMA_ENDPOINT}
-endpoint: https://grown-production-application.herokuapp.com/grown-production/prod
+# DEVELOPMENT ENDPOINT - PUT IN VARIABLES.ENV - UNCOMMENT FOR DEVELOPMENT / COMMENT OUT FOR PRODUCTION
+
+endpoint: ${env:PRISMA_ENDPOINT}
+
+# PRODUCTION ENDPOINT - USE YOUR OWN - UNCOMMENT FOR PRODUCTION
+#endpoint: https://grown-production-application.herokuapp.com/grown-production/prod
+
 datamodel: datamodel.graphql
 secret: ${env:PRISMA_SECRET}
 hooks:

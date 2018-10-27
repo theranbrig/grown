@@ -13,3 +13,5 @@ frontend/.vscode
 .next
 
 .DS_Store
+
+backend/prisma.yml
