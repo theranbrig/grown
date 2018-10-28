@@ -13,3 +13,6 @@ frontend/.vscode
 .next
 
 .DS_Store
+
+frontend/config.js
+

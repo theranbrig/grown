@@ -17,19 +17,14 @@ describe('Header', () => {
 		expect(img.props().alt).toContain('Grown Logo');
 	});
 });
+
 describe('NavBar', () => {
 	it('should render the Navbar', () => {
 		const wrapper = shallow(<Nav />);
 		const homeLink = wrapper.find('a');
 		const navigation = wrapper.find('.navigation-bar');
-		expect(homeLink.length).toBe(1);
+		expect(homeLink.length).toBe(2);
 		expect(navigation.find('Link').exists()).toBe(true);
-		expect(
-			navigation
-				.find('Link')
-				.children()
-				.text()
-		).toBe('Home');
 	});
 });
 
