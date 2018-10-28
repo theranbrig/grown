@@ -1,6 +1,6 @@
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
-		const farm = ctx.db.mutation.createItem({
+		const farm = ctx.db.mutation.createFarm({
 			data: {
 				...args
 			},
