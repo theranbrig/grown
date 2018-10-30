@@ -26,9 +26,9 @@ describe('View Farm Item Box', () => {
 		const wrapper = shallow(<Farm farm={fakeFarm} />);
 		const farmName = wrapper.find('h3');
 		const image = wrapper.find('Image');
-		const description = wrapper.find('h4');
+		const location = wrapper.find('p');
 		expect(farmName.text()).toBe(fakeFarm.name);
 		expect(image.props().src).toBe(fakeFarm.image);
-		expect(description.text()).toBe(fakeFarm.description);
+		expect(location.text()).toBe(`<Icon />${fakeFarm.location}`);
 	});
 });

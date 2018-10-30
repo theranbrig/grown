@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Header, Button, Image, Icon } from 'semantic-ui-react';
 import { FarmInfo } from './styles/FarmStyles';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 class Farm extends Component {
 	componentDidMount() {
@@ -20,13 +21,22 @@ class Farm extends Component {
 					<Image src={farm.image} size="large" />
 					<div className="farm-info">
 						<h3>{farm.name}</h3>
-						<h4>{farm.description}</h4>
 						<p>
 							<Icon name="location arrow" />
 							{farm.location}
 						</p>
 					</div>
-					<Button>Shop {farm.name}</Button>
+					<div className="farm-link">
+						<Link
+							href={{
+								pathname: 'farm',
+								query: { id: farm.id }
+							}}>
+							<a>
+								Explore {farm.name} <i class="arrow alternate circle right outline icon" />
+							</a>
+						</Link>
+					</div>
 				</FarmInfo>
 			</Grid.Column>
 		);
