@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Individual Farm Page Errors with a not found farm 1`] = `
+<p>
+  Error...
+</p>
+`;
+
+exports[`Individual Farm Page should render the individual farm page 1`] = `
+<h4>
+  Farmy McFarmson
+</h4>
+`;
+
+exports[`Individual Farm Page should render the individual farm page 2`] = `
+<img
+  alt="Farmy McFarmson"
+  className="ui centered image"
+  src="farm.jpg"
+/>
+`;
+
+exports[`Individual Farm Page should render the individual farm page 3`] = `
+Array [
+  <h2>
+    Farmy McFarmson
+  </h2>,
+  <h2>
+    Shop Coming Soon
+  </h2>,
+]
+`;
