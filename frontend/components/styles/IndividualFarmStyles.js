@@ -38,7 +38,7 @@ const StyledFarmInfo = styled.div`
 		color: ${props => props.theme.regularBlue};
 	}
 	div.eight.wide.computer.sixteen.mobile.column {
-		padding: 40px 0 !important;
+		padding: 40px 0 0 !important;
 	}
 	div.text-info {
 		padding: 0 17px;
