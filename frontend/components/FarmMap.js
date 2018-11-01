@@ -7,7 +7,8 @@ const MapDiv = styled.div`
 	margin: 0 auto;
 	padding: 20px 0;
 	margin: 0 auto;
-	height: 250px;
+	left: -3px;
+	height: 300px;
 `;
 
 class MapContainer extends React.Component {
@@ -48,7 +49,7 @@ class MapContainer extends React.Component {
 
 		const divStyle = {
 			position: 'relative'
-		}
+		};
 		return (
 			<MapDiv style={divStyle}>
 				<Map
