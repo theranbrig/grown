@@ -33,7 +33,7 @@ class Farm extends Component {
 								query: { id: farm.id }
 							}}>
 							<a>
-								Explore {farm.name} <i class="arrow alternate circle right outline icon" />
+								Explore {farm.name} <i className="arrow alternate circle right outline icon" />
 							</a>
 						</Link>
 					</div>

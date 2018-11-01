@@ -15,4 +15,4 @@ frontend/.vscode
 .DS_Store
 
 frontend/config.js
-
+frontend/.env

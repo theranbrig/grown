@@ -1,16 +1,34 @@
+enum Permission {
+	ADMIN
+	USER
+	FARMCREATE
+	FARMUPDATE
+	FARMDELETE
+	MARKETCREATE
+	MARKETUPDATE
+	MARKETDELETE
+	PERMISSIONUPDATE
+}
+
 type User {
 	id: ID! @unique
 	name: String!
-	email: String!
+	email: String! @unique
+	password: String!
+	resetToken: String
+	resetTokenExpiry: Float
+	permissions: [Permission]
 }
 
 type Farm {
 	id: ID! @unique
 	name: String!
+	tagline: String!
 	description: String!
 	location: String!
 	email: String!
 	phone: String!
 	image: String!
 	website: String!
+	user: User!
 }
