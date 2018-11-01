@@ -1,5 +1,9 @@
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+	message: String
+}
+
 type Mutation {
 	createFarm(
 		name: String
@@ -10,10 +14,16 @@ type Mutation {
 		image: String
 		website: String
 	): Farm!
+	signup(name: String!, email: String!, password: String!): User!
+	signin(email: String!, password: String!): User!
+	signout: SuccessMessage
+	requestReset(email: String!): SuccessMessage
+	resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 }
 
 type Query {
 	farms(where: FarmWhereInput, orderBy: FarmOrderByInput, skip: Int, first: Int): [Farm]!
 	farm(where: FarmWhereUniqueInput!): Farm
 	farmsConnection(where: FarmWhereInput): FarmConnection!
+	me: User
 }
