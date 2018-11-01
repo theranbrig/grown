@@ -6,12 +6,26 @@ const { transport, resetPasswordEmail } = require('../mail');
 
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
-		const farm = ctx.db.mutation.createFarm({
-			data: {
-				...args
+		// Check User Login
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
+		// Create Item
+		const farm = ctx.db.mutation.createFarm(
+			{
+				data: {
+					// Connect to User Foreign Key
+					user: {
+						connect: {
+							id: ctx.request.userId
+						}
+					},
+					...args
+				}
 			},
 			info
-		});
+		);
+		console.log(farm);
 		return farm;
 	},
 	async signup(parent, args, ctx, info) {
