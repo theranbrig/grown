@@ -10,6 +10,7 @@ const NavStyles = styled.ul`
 	@media (max-width: 700px) {
 		padding: 8px 0 0;
 	}
+	p,
 	a,
 	button {
 		padding: 0.5rem 1rem;
@@ -17,11 +18,14 @@ const NavStyles = styled.ul`
 		align-items: center;
 		position: relative;
 		text-transform: uppercase;
-		font-size: 0.8em;
+		font-size: 1.2rem;
 		background: none;
 		border: 0;
 		text-decoration: none;
 		color: #093c64;
+		letter-spacing: 0.1rem;
+		font-family: 'Michroma', sans-serif;
+		border-right: 1px solid ${props => props.theme.darkBlue};
 		cursor: pointer;
 		@media (max-width: 700px) {
 			font-size: 10px;
@@ -57,6 +61,9 @@ const NavStyles = styled.ul`
 			&:after {
 				width: calc(100% - 60px);
 			}
+		}
+		&:last-child {
+			border-right: none;
 		}
 	}
 	@media (max-width: 1300px) {

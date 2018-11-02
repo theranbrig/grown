@@ -11,11 +11,16 @@ const FarmInfo = styled.div`
 		width: 100% !important;
 		margin: 0;
 	}
-	button {
-		color: ${props => props.theme.darkBlue} !important;
+	.farm-link {
 		width: 100%;
 		border-radius: 0 !important;
 		background-color: ${props => props.theme.lightBlue} !important;
+		padding: 15px;
+	}
+	.farm-link a {
+		color: ${props => props.theme.darkBlue} !important;
+		font-size: 1.3rem;
+		font-family: 'Lato', sans-serif;
 	}
 	.farm-info {
 		display: inline-block;
