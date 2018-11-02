@@ -1,5 +1,4 @@
 type User {
-<<<<<<< HEAD
 	id: ID! @unique
 	name: String!
 	email: String!
