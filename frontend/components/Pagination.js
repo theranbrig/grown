@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import Link from 'next/link';
 import { perPage } from '../config';
 import PaginationStyles from './styles/PaginationStyles';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Message } from 'semantic-ui-react';
 
 // GQL Query for total farms in db.
 const PAGINATION_QUERY = gql`
@@ -21,7 +21,10 @@ const Pagination = props => {
 	return (
 		<Query query={PAGINATION_QUERY}>
 			{({ data, loading, error }) => {
-				if (error) return <p>Error...</p>;
+				if (error) {
+					console.log(error);
+					return <Message error header={'Oops...Something Went Awry'} content={error.message} />;
+				}
 				if (loading) return <Loader active inline />;
 				// Set Pages and Count of total Farms
 				const count = data.farmsConnection.aggregate.count;
@@ -32,7 +35,7 @@ const Pagination = props => {
 						<Link
 							prefetch
 							href={{
-								pathname: 'farms',
+								pathname: 'browse',
 								query: { page: page - 1 }
 							}}>
 							<a className="prev" aria-disabled={page <= 1}>
@@ -45,7 +48,7 @@ const Pagination = props => {
 						<Link
 							prefetch
 							href={{
-								pathname: 'farms',
+								pathname: 'browse',
 								query: { page: page + 1 }
 							}}>
 							<a className="prev" aria-disabled={page >= pages}>

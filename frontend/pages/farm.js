@@ -1,9 +1,9 @@
 import React from 'react';
 import IndividualFarm from '../components/IndividualFarm';
 
-const IndividualFarmPage = params => (
+const IndividualFarmPage = props => (
 	<div>
-		<IndividualFarm />
+		<IndividualFarm id={props.query.id} />
 	</div>
 );
 

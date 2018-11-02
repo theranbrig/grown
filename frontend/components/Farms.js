@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { MainArea } from './styles/FarmStyles';
 import Farm from './Farm';
-import { Grid, Container, Loader } from 'semantic-ui-react';
+import { Grid, Container, Loader, Message } from 'semantic-ui-react';
 import Pagination from './Pagination';
 import Head from 'next/head';
 import { perPage } from '../config';
@@ -41,7 +41,15 @@ class Farms extends Component {
 				<Grid container centered textAlign="center">
 					<Query query={ALL_FARMS_QUERY} variables={{ skip: this.props.page * perPage - perPage }}>
 						{({ data, error, loading }) => {
-							if (error) return <p>Error...</p>;
+							if (error)
+								return (
+									<Message
+										error
+										header={'Oops...Something Went Awry'}
+										content={error.message}
+										compact
+									/>
+								);
 							if (loading) return <Loader active inline />;
 							return (
 								<>

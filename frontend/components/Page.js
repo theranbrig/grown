@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import Meta from '../components/Meta';
 import Footer from './Footer';
 
-
 const theme = {
 	darkBlue: '#093C64',
 	regularBlue: '#476b97',
@@ -17,6 +16,7 @@ const theme = {
 const StyledPage = styled.div`
 	background: ${props => props.theme.offWhite};
 	color: ${props => props.theme.black};
+	min-height: 100vh;
 `;
 
 const Inner = styled.div`
