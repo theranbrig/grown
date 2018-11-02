@@ -15,6 +15,17 @@ type Mutation {
 		website: String!
 		tagline: String!
 	): Farm!
+	updateFarm(
+		id: ID!
+		name: String
+		description: String
+		location: String
+		email: String
+		phone: String
+		image: String
+		website: String
+		tagline: String
+	): Farm!
 	signup(name: String!, email: String!, password: String!): User!
 	signin(email: String!, password: String!): User!
 	signout: SuccessMessage
