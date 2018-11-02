@@ -63,22 +63,7 @@ class IndividualFarm extends Component {
 												<div className="info-box">
 													<div className="text-info">
 														<h4>{farm.name}</h4>
-														{me &&
-															me.id === farm.user.id && (
-																<div className="edit-farm-link">
-																	<Link
-																		href={{
-																			pathname: '/updatefarm',
-																			query: { id: farm.id }
-																		}}>
-																		<a>
-																			<Icon name="edit" />
-																			Edit Farm Information
-																		</a>
-																	</Link>
-																	<DeleteFarmButton id={farm.id} />
-																</div>
-															)}
+
 														<p>
 															<Icon name="map" />
 															{farm.location}
@@ -95,6 +80,22 @@ class IndividualFarm extends Component {
 													</div>
 													<MapContainer location={farm.location} name={farm.name} />
 												</div>
+												{me &&
+													me.id === farm.user.id && (
+														<div className="edit-farm-link">
+															<Link
+																href={{
+																	pathname: '/updatefarm',
+																	query: { id: farm.id }
+																}}>
+																<a>
+																	<Icon name="edit" />
+																	Edit Farm Information
+																</a>
+															</Link>
+															<DeleteFarmButton id={farm.id} />
+														</div>
+													)}
 											</Grid.Column>
 										</Grid.Row>
 									</Grid>
