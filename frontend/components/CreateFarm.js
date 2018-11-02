@@ -9,7 +9,7 @@ import FormStyling from './styles/FormStyles';
 import User from './User';
 import LoggedIn from './LoggedIn';
 import Router from 'next/router';
-import Error from './ErrorMessage'
+import Error from './ErrorMessage';
 
 // Sign Up User Mutation
 const CREATE_FARM_MUTATION = gql`
@@ -106,6 +106,7 @@ class CreateFarm extends Component {
 												placeholder="Enter Farm Name"
 												value={this.state.name}
 												onChange={this.saveToState}
+												maxLength="30"
 											/>
 										</Form.Field>
 									</Form.Group>
@@ -118,6 +119,7 @@ class CreateFarm extends Component {
 												placeholder="Enter Farm Address"
 												value={this.state.location}
 												onChange={this.saveToState}
+												maxLength="60"
 											/>
 										</Form.Field>
 									</Form.Group>
@@ -142,6 +144,7 @@ class CreateFarm extends Component {
 												placeholder="Add Phone Number"
 												value={this.state.phone}
 												onChange={this.saveToState}
+												max-length="13"
 											/>
 										</Form.Field>
 									</Form.Group>
@@ -154,6 +157,7 @@ class CreateFarm extends Component {
 												placeholder="Add Short Farm Description"
 												value={this.state.tagline}
 												onChange={this.saveToState}
+												maxLength="40"
 											/>
 										</Form.Field>
 									</Form.Group>

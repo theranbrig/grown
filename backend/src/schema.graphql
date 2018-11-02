@@ -26,6 +26,7 @@ type Mutation {
 		website: String
 		tagline: String
 	): Farm!
+	deleteFarm(id: ID!): Farm
 	signup(name: String!, email: String!, password: String!): User!
 	signin(email: String!, password: String!): User!
 	signout: SuccessMessage

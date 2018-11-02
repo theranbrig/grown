@@ -57,7 +57,7 @@ const UPDATE_FARM_MUTATION = gql`
 
 class UpdateFarm extends Component {
 	// State for Form
-	state = {};
+	state = { completed: false };
 
 	// Handle Value Change
 	handleChange = e => {
@@ -89,6 +89,14 @@ class UpdateFarm extends Component {
 				...this.state
 			}
 		});
+		this.setState({ completed: true });
+	};
+
+	backToPage = () => {
+		Router.push({
+			pathname: '/farm',
+			query: { id: this.props.id }
+		});
 	};
 
 	render() {
@@ -101,9 +109,10 @@ class UpdateFarm extends Component {
 					return (
 						<Grid>
 							<FormStyling>
-								<h1>
-									Update <span>{farm.name}</span>
-								</h1>
+								{this.state.name ? <h1>{this.state.name}</h1> : <h1>{farm.name}</h1>}
+								<a href="#" onClick={this.backToPage}>
+									Return to {this.state.name ? this.state.name : farm.name}
+								</a>
 								<Mutation mutation={UPDATE_FARM_MUTATION} variables={this.state}>
 									{(updateFarm, { loading, error }) => {
 										if (error) return <Error error={error} />;
@@ -113,13 +122,14 @@ class UpdateFarm extends Component {
 												method="post"
 												className="create-farm-form"
 												loading={loading}
-												onSubmit={e => {
-													this.updateFarm(e, updateFarm);
-													Router.push({
-														pathname: '/farm',
-														query: { id: this.props.id }
-													});
+												onSubmit={async e => {
+													await this.updateFarm(e, updateFarm);
 												}}>
+												<Message
+													success
+													header="UPDATE COMPLETE"
+													content="Check over your changes or make new ones if you wish."
+												/>
 												<Form.Group>
 													<Form.Field width={16}>
 														<label>Farm Name</label>
@@ -131,6 +141,7 @@ class UpdateFarm extends Component {
 															required
 															defaultValue={farm.name}
 															onChange={this.handleChange}
+															maxLength="30"
 														/>
 													</Form.Field>
 												</Form.Group>
@@ -145,6 +156,7 @@ class UpdateFarm extends Component {
 															required
 															defaultValue={farm.location}
 															onChange={this.handleChange}
+															maxLength="60"
 														/>
 													</Form.Field>
 												</Form.Group>
@@ -171,6 +183,7 @@ class UpdateFarm extends Component {
 															placeholder="Add Phone Number"
 															defaultValue={farm.phone}
 															onChange={this.handleChange}
+															maxLength="13"
 														/>
 													</Form.Field>
 												</Form.Group>
@@ -183,6 +196,7 @@ class UpdateFarm extends Component {
 															placeholder="Add Short Farm Description"
 															defaultValue={farm.tagline}
 															onChange={this.handleChange}
+															maxLength="40"
 														/>
 													</Form.Field>
 												</Form.Group>
@@ -228,10 +242,15 @@ class UpdateFarm extends Component {
 													</Form.Field>
 												</Form.Group>
 												<Button type="submit" icon labelPosition="right">
-													Add
-													{/* {loading ? 'ing' : ''} Farm */}
+													Updat
+													{loading ? 'ing' : 'e'} Farm
 													<Icon name="right arrow" />
 												</Button>
+												<Message
+													success
+													header="UPDATE COMPLETE"
+													content="Check over your changes or make new ones if you wish."
+												/>
 											</Form>
 										);
 									}}
