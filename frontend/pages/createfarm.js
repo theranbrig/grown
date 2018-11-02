@@ -4,7 +4,7 @@ import CreateFarm from '../components/CreateFarm';
 
 const CreateFarmPage = props => (
 	<LoginCheck>
-		<CreateFarm id={props.query.id} />
+		<CreateFarm />
 	</LoginCheck>
 );
 

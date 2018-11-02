@@ -64,6 +64,9 @@ const StyledFarmInfo = styled.div`
 		margin: 0 auto;
 		font-family: 'Lato', sans-serif;
 	}
+	.edit-farm-link {
+		padding: 10px 0 !important;
+	}
 `;
 
 export default StyledFarmInfo;

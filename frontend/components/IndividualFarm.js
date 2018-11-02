@@ -8,12 +8,14 @@ import { Loader, Grid, Image, Icon } from 'semantic-ui-react';
 import MapContainer from './FarmMap';
 import { GoogleApiWrapper } from 'google-maps-react';
 import StyledFarmInfo from './styles/IndividualFarmStyles';
+import Link from 'next/link';
 
 const INDIVIDUAL_FARM_QUERY = gql`
 	query INDIVIDUAL_FARM_QUERY($id: ID!) {
 		farm(where: { id: $id }) {
 			id
 			name
+			tagline
 			description
 			location
 			phone
@@ -54,6 +56,16 @@ class IndividualFarm extends Component {
 										<div className="info-box">
 											<div className="text-info">
 												<h4>{farm.name}</h4>
+												<div className="edit-farm-link">
+													<Link href={{
+														pathname: '/updatefarm',
+														query: {id: farm.id}
+													}}>
+														<a>
+															Edit Farm Information <Icon name="edit" />
+														</a>
+													</Link>
+												</div>
 												<p>
 													<Icon name="map" />
 													{farm.location}

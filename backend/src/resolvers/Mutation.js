@@ -6,10 +6,6 @@ const { transport, resetPasswordEmail } = require('../mail');
 
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
-		// Check User Login
-		if (!ctx.request.userId) {
-			throw new Error('You must be logged in to do that!');
-		}
 		// Create Item
 		const farm = ctx.db.mutation.createFarm(
 			{
@@ -27,6 +23,26 @@ const Mutations = {
 		);
 		console.log(farm);
 		return farm;
+	},
+	updateFarm(parent, args, ctx, info) {
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
+
+		// Create Updates
+		const updates = { ...args };
+		console.log(updates);
+		// Remove new ID to save old ID over it
+		delete updates.id;
+		return ctx.db.mutation.updateFarm(
+			{
+				data: updates,
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
 	},
 	async signup(parent, args, ctx, info) {
 		args.email = args.email.toLowerCase();
