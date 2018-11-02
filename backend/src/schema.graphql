@@ -6,6 +6,17 @@ type SuccessMessage {
 
 type Mutation {
 	createFarm(
+		name: String!
+		description: String!
+		location: String!
+		email: String!
+		phone: String!
+		image: String!
+		website: String!
+		tagline: String!
+	): Farm!
+	updateFarm(
+		id: ID!
 		name: String
 		description: String
 		location: String
@@ -13,7 +24,9 @@ type Mutation {
 		phone: String
 		image: String
 		website: String
+		tagline: String
 	): Farm!
+	deleteFarm(id: ID!): Farm
 	signup(name: String!, email: String!, password: String!): User!
 	signin(email: String!, password: String!): User!
 	signout: SuccessMessage
