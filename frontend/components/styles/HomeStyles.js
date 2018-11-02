@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const MainGrid = styled.div`
 	overflow-x: hidden;
+
 	.two .column {
 		padding: 30px;
 	}
@@ -10,7 +11,10 @@ const MainGrid = styled.div`
 		padding: 20px 0 0;
 	}
 	div.sixteen.wide.column.title-splash {
-		padding: 0 !important;
+		padding: 0px !important;
+	}
+	div.ui.centered.stackable.grid {
+		margin: 0px;
 	}
 `;
 

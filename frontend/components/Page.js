@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 import Header from '../components/Header';
 import Meta from '../components/Meta';
+import Footer from './Footer';
+
 
 const theme = {
 	darkBlue: '#093C64',
@@ -47,6 +49,7 @@ class Page extends Component {
 					<Header />
 					<div />
 					<Inner>{this.props.children}</Inner>
+					<Footer />
 				</StyledPage>
 			</ThemeProvider>
 		);
