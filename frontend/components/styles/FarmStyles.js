@@ -78,6 +78,10 @@ const MainArea = styled.div`
 		background-color: ${props => props.theme.lightBlue};
 		border-bottom: 2px solid ${props => props.theme.orange};
 	}
+	.add-farm-link {
+		margin: 0 0 25px;
+		font-size: 1.4rem;
+	}
 `;
 
 export { FarmInfo, MainArea };
