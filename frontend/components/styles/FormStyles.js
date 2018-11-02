@@ -32,6 +32,9 @@ const FormStyling = styled.div`
 	img {
 		margin: 10px;
 	}
+	div.ui.success.message {
+		margin-top: 10px;
+	}
 `;
 
 export default FormStyling;

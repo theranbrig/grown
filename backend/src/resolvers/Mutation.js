@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { transport, resetPasswordEmail } = require('../mail');
+const { hasPermission } = require('../utils');
 
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
@@ -24,6 +25,7 @@ const Mutations = {
 		console.log(farm);
 		return farm;
 	},
+
 	updateFarm(parent, args, ctx, info) {
 		if (!ctx.request.userId) {
 			throw new Error('You must be logged in to do that!');
@@ -44,6 +46,24 @@ const Mutations = {
 			info
 		);
 	},
+
+	async deleteFarm(parent, args, ctx, info) {
+		const where = { id: args.id };
+		// Find item in db
+		const farm = await ctx.db.query.farm({ where }, `{id name user {id}}`);
+		// Check if owner or permissions
+		console.log(farm);
+		const farmOwner = farm.user.id === ctx.request.userId;
+		const hasPermissions = ctx.request.user.permissions.some(permission =>
+			['ADMIN', 'FARMDELETE'].includes(permission)
+		);
+		if (!farmOwner && !hasPermissions) {
+			throw new Error('You are not allowed to do that!');
+		}
+		// Delete
+		return ctx.db.mutation.deleteFarm({ where }, info);
+	},
+
 	async signup(parent, args, ctx, info) {
 		args.email = args.email.toLowerCase();
 		// Hash Password
@@ -68,6 +88,7 @@ const Mutations = {
 		console.log('You Signed Up');
 		return user;
 	},
+
 	async signin(parent, { email, password }, ctx, info) {
 		const user = await ctx.db.query.user({ where: { email } });
 		// Check if user exists
@@ -89,6 +110,7 @@ const Mutations = {
 		console.log('You Logged In');
 		return user;
 	},
+
 	async signout(parent, args, ctx, info) {
 		ctx.response.clearCookie('token');
 		return { message: 'Goodbye!' };
@@ -120,6 +142,7 @@ const Mutations = {
 		// Return Email
 		return { message: 'Thanks' };
 	},
+
 	async resetPassword(parent, args, ctx, info) {
 		// Check passwords match
 		if (args.password !== args.confirmPassword) {

@@ -83,3 +83,4 @@ class Farms extends Component {
 }
 
 export default Farms;
+export { ALL_FARMS_QUERY };

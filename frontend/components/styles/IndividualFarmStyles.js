@@ -41,7 +41,8 @@ const StyledFarmInfo = styled.div`
 		padding: 40px 0 0 !important;
 	}
 	div.text-info {
-		padding: 0 17px;
+		margin-left: 10px;
+		padding: 0 17px !important;
 		font-family: 'Lato', sans-serif;
 	}
 	.text-info p,
@@ -66,6 +67,9 @@ const StyledFarmInfo = styled.div`
 	}
 	.edit-farm-link {
 		padding: 10px 0 !important;
+	}
+	.phone-email {
+		padding: 7px 0
 	}
 `;
 
