@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 const StyledFarmInfo = styled.div`
 	.farm-header {
-		padding-top: 30px;
+		padding-top: 25px;
 		background-color: ${props => props.theme.lightBlue};
 		border-bottom: 2px solid ${props => props.theme.orange};
 		text-align: center;
 	}
 	h2,
 	h3 {
-		padding: 0 0 20px 0;
+		padding: 0 0 15px 0;
 		font-family: 'Michroma', sans-serif;
 		letter-spacing: 0.1rem;
 		width: 50%;
@@ -38,10 +38,11 @@ const StyledFarmInfo = styled.div`
 		color: ${props => props.theme.regularBlue};
 	}
 	div.eight.wide.computer.sixteen.mobile.column {
-		padding: 40px 0 !important;
+		padding: 40px 0 0 !important;
 	}
 	div.text-info {
-		padding: 0 17px;
+		margin-left: 10px;
+		padding: 0 17px !important;
 		font-family: 'Lato', sans-serif;
 	}
 	.text-info p,
@@ -52,6 +53,7 @@ const StyledFarmInfo = styled.div`
 		min-height: 650px;
 	}
 	i {
+		font-size: 1.5rem;
 		margin-right: 10px;
 		color: ${props => props.theme.regularBlue};
 	}
@@ -63,6 +65,14 @@ const StyledFarmInfo = styled.div`
 		padding: 0;
 		margin: 0 auto;
 		font-family: 'Lato', sans-serif;
+	}
+	.edit-farm-link {
+		padding: 10px 0 10px 22px !important;
+		font-size: 1.5rem;
+		margin-left: 10px;
+	}
+	.phone-email {
+		padding: 7px 0;
 	}
 `;
 

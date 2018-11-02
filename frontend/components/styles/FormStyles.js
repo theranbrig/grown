@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const FormStyling = styled.div`
-	width: 400px;
-	max-width: 90%;
-	margin: 100px auto 300px;
+	width: 500px;
+	max-width: 95%;
+	margin: 70px auto 300px;
 	text-align: center;
 	ul {
 		list-style-type: none;
@@ -28,6 +28,12 @@ const FormStyling = styled.div`
 	span {
 		font-family: 'Michroma', sans-serif;
 		color: ${props => props.theme.darkBlue};
+	}
+	img {
+		margin: 10px;
+	}
+	div.ui.success.message {
+		margin-top: 10px;
 	}
 `;
 
