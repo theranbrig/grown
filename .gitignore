@@ -18,3 +18,4 @@ frontend/config.js
 frontend/.env
 
 backend/prisma.yml
+
