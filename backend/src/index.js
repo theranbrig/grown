@@ -33,10 +33,12 @@ server.start(
 	{
 		cors: {
 			credentials: true,
-			origin: process.env.FRONTEND_URL
+			origin: [process.env.FRONTEND_URL, '*.herokuapp.com/']
 		}
 	},
 	deets => {
 		console.log(`Server is now running on port http:/localhost:${deets.port}`);
 	}
 );
+
+// Access to fetch at 'https://grown-yoga-prod.herokuapp.com/' from origin 'https://grown-next.herokuapp.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'https://grown-next.herokuapp.com/' that is not equal to the supplied origin. Have the server send the header with a valid value, or, if an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
