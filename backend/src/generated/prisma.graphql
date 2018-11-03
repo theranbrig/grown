@@ -1,5 +1,5 @@
-# source: https://grown-production-application.herokuapp.com/grown-production/prod
-# timestamp: Sat Nov 03 2018 10:51:02 GMT+0900 (Korean Standard Time)
+# source: https://us1.prisma.sh/theran/grown/dev
+# timestamp: Sat Nov 03 2018 15:01:12 GMT+0900 (Korean Standard Time)
 
 type AggregateFarm {
   count: Int!
@@ -24,7 +24,7 @@ type Farm implements Node {
   phone: String!
   image: String!
   website: String!
-  user(where: UserWhereInput): User!
+  user: User!
 }
 
 """A connection to a list of items."""
@@ -143,7 +143,18 @@ input FarmUpdateInput {
   phone: String
   image: String
   website: String
-  user: UserUpdateOneInput
+  user: UserUpdateOneRequiredInput
+}
+
+input FarmUpdateManyMutationInput {
+  name: String
+  tagline: String
+  description: String
+  location: String
+  email: String
+  phone: String
+  image: String
+  website: String
 }
 
 input FarmWhereInput {
@@ -537,8 +548,8 @@ type Mutation {
   deleteUser(where: UserWhereUniqueInput!): User
   upsertFarm(where: FarmWhereUniqueInput!, create: FarmCreateInput!, update: FarmUpdateInput!): Farm!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManyFarms(data: FarmUpdateInput!, where: FarmWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyFarms(data: FarmUpdateManyMutationInput!, where: FarmWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   deleteManyFarms(where: FarmWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
@@ -735,10 +746,18 @@ input UserUpdateInput {
   permissions: UserUpdatepermissionsInput
 }
 
-input UserUpdateOneInput {
+input UserUpdateManyMutationInput {
+  name: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateOneRequiredInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
-  delete: Boolean
   update: UserUpdateDataInput
   upsert: UserUpsertNestedInput
 }
@@ -983,9 +1002,6 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   resetTokenExpiry_gte: Float
-  _MagicalBackRelation_FarmToUser_every: FarmWhereInput
-  _MagicalBackRelation_FarmToUser_some: FarmWhereInput
-  _MagicalBackRelation_FarmToUser_none: FarmWhereInput
 }
 
 input UserWhereUniqueInput {
