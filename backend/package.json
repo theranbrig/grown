@@ -8,6 +8,12 @@
 		"test": "jest",
 		"deploy": "prisma deploy --env-file variables.env"
 	},
+	"now": {
+		"name": "backend",
+		"alias": [
+			"grown-backend-rjgbfjpplb.now.sh"
+		]
+	},
 	"dependencies": {
 		"babel-preset-env": "^1.7.0",
 		"bcryptjs": "2.4.3",
