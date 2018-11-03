@@ -5,7 +5,7 @@ import { endpoint, prodEndpoint } from '../config';
 function createClient({ headers }) {
 	// Set up apollo clietn
 	return new ApolloClient({
-		uri: process.env.NODE_ENV === 'development' ? endpoint : "https://grown-production-application.herokuapp.com/grown-production/prod",
+		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
 		request: operation => {
 			operation.setContext({
 				fetchOptions: {
