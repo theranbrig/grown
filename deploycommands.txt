@@ -1,0 +1,15 @@
+1. Primsa - Make sure in Backend Folder
+
+Be sure to switch prisma.yml endpoints first
+
+npm run deploy
+
+2. Backend - Make sure on Main Folder
+
+git subtree push --prefix backend heroku-backend master
+
+3. Frontend - Make sure on Main Folder
+
+git subtree push --prefix frontend heroku-frontend master
+
+Update Environmental Variables.
