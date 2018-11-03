@@ -6,9 +6,15 @@
 	"scripts": {
 		"dev": "next -p 7777",
 		"build": "next build",
-		"start": "next start -p $PORT",
+		"start": "next start",
 		"test": "NODE_ENV=test jest --watch",
 		"heroku-postbuild": "next build"
+	},
+	"now": {
+		"name": "frontend",
+		"alias": [
+			"grown-frontend-byhvzjgosu.now.sh"
+		]
 	},
 	"author": "",
 	"license": "ISC",
