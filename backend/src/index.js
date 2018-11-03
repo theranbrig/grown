@@ -29,7 +29,7 @@ server.express.use(async (req, res, next) => {
 });
 
 server.start(
-	For Production Right Now.  Needs to be fixed later.
+	//For Production Right Now.  Needs to be fixed later.
 	{
 		cors: {
 			credentials: true,
