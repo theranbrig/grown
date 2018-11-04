@@ -32,3 +32,14 @@ type Farm {
 	website: String!
 	user: User!
 }
+
+type Product {
+	id: ID! @unique
+	name: String!
+	description: String!
+	image: String
+	price: Int!
+	unit: String
+	farmId: String
+	farm: Farm!
+}

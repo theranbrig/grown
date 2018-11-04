@@ -11,6 +11,8 @@ import StyledFarmInfo from './styles/IndividualFarmStyles';
 import Link from 'next/link';
 import User from './User';
 import DeleteFarmButton from './DeleteFarmButton';
+import Store, { PRODUCTS_QUERY } from './Store';
+import CreateProduct from './CreateProduct';
 
 const INDIVIDUAL_FARM_QUERY = gql`
 	query INDIVIDUAL_FARM_QUERY($id: ID!) {
@@ -51,13 +53,17 @@ class IndividualFarm extends Component {
 											<Grid.Column mobile={16} computer={8}>
 												<Image src={farm.image} alt={farm.name} centered />
 												<h3>{farm.tagline}</h3>
-												<ul>
-													<li>Cucumbers</li>
-													<li>Potatoes</li>
-													<li>Sweet Corn</li>
-													<li>Radishes</li>
-													<li>And More...</li>
-												</ul>
+												<Query query={PRODUCTS_QUERY} variables={{ farmId: farm.id }}>
+													{({ data, error, loading }) => {
+														return (
+															<ul>
+																{data.products.slice(0, 5).map(product => (
+																	<li>{product.name}</li>
+																))}
+															</ul>
+														);
+													}}
+												</Query>
 											</Grid.Column>
 											<Grid.Column mobile={16} computer={8}>
 												<div className="info-box">
@@ -100,10 +106,10 @@ class IndividualFarm extends Component {
 										</Grid.Row>
 									</Grid>
 									<Grid container centered>
-										<div className="farm-header">
-											<h2>Shop Coming Soon</h2>
-											<h3>Order for pickup at your markets</h3>
-										</div>
+										<Grid.Column width={16}>
+											<Store id={farm.id} name={farm.name} />
+											{me && me.id === farm.user.id && <CreateProduct id={farm.id}/>}
+										</Grid.Column>
 									</Grid>
 								</StyledFarmInfo>
 							);
