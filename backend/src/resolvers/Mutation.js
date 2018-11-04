@@ -4,6 +4,7 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { transport, resetPasswordEmail } = require('../mail');
 const { hasPermission } = require('../utils');
+require('dotenv').config({ path: 'variables.env' });
 
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
@@ -107,6 +108,7 @@ const Mutations = {
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24 * 14 // Two week token
 		});
+		console.log(token);
 		console.log('You Logged In');
 		return user;
 	},
