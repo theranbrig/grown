@@ -181,6 +181,25 @@ const Mutations = {
 		});
 		console.log('You Logged In');
 		return updatedUser;
+	},
+
+	async createProduct(parent, args, ctx, info) {
+		const farmID = args.farmId;
+		const product = await ctx.db.mutation.createProduct(
+			{
+				data: {
+					farm: {
+						connect: {
+							id: farmID
+						}
+					},
+					...args
+				}
+			},
+			info
+		);
+		console.log(product);
+		return product;
 	}
 };
 
