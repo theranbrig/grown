@@ -65,9 +65,6 @@ class Login extends Component {
 														e.preventDefault();
 														await signin();
 														this.setState({ email: '', password: '' });
-														Router.push({
-															pathname: '/browse'
-														});
 													}}>
 													<Message
 														success
