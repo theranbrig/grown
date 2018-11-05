@@ -6,7 +6,7 @@ function createClient({ headers }) {
 	// Set up apollo client
 	return new ApolloClient({
 		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
-		request: operation => {
+		request: async operation => {
 			operation.setContext({
 				fetchOptions: {
 					credentials: 'include'
