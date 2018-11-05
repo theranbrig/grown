@@ -13,7 +13,7 @@ type Mutation {
 		phone: String!
 		image: String!
 		website: String!
-		tagline: String!
+		tagline: String
 	): Farm!
 	updateFarm(
 		id: ID!
@@ -40,6 +40,14 @@ type Mutation {
 		unit: String
 		farmId: String
 	): Product!
+	updateProduct(
+		name: String!
+		description: String!
+		image: String
+		price: Int!
+		unit: String
+		farmId: String
+	): Product!
 }
 
 type Query {
@@ -54,5 +62,5 @@ type Query {
 		first: Int
 		unit: String
 	): [Product]!
-	product(where: ProductWhereUniqueInput!): Product
+	product(where: ProductWhereUniqueInput!, skip: Boolean): Product
 }

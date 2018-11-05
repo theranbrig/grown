@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/theran/theran-back/dev
-# timestamp: Sun Nov 04 2018 16:53:13 GMT+0900 (Korean Standard Time)
+# timestamp: Mon Nov 05 2018 08:15:05 GMT+0900 (Korean Standard Time)
 
 type AggregateFarm {
   count: Int!
@@ -27,7 +27,7 @@ type Farm implements Node {
   email: String!
   phone: String!
   image: String!
-  website: String!
+  website: String
   user: User!
 }
 
@@ -49,7 +49,7 @@ input FarmCreateInput {
   email: String!
   phone: String!
   image: String!
-  website: String!
+  website: String
   user: UserCreateOneInput!
 }
 
@@ -101,7 +101,7 @@ type FarmPreviousValues {
   email: String!
   phone: String!
   image: String!
-  website: String!
+  website: String
 }
 
 type FarmSubscriptionPayload {

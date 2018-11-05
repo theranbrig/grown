@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Grid, Message, Icon, Select, Label, Input } from 'semantic-ui-react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import LoggedIn from './LoggedIn';
 import Router from 'next/router';
@@ -21,8 +21,26 @@ const CreateProductStyling = styled.div`
 		font-size: 1rem;
 	}
 `;
-const CREATE_PRODUCT_MUTATION = gql`
-	mutation CREATE_PRODUCT_MUTATION(
+
+const INDIVIDUAL_PRODUCT_QUERY = gql`
+	query INDIVIDUAL_PRODUCT_QUERY($id: ID!) {
+		product(where: { id: $id }) {
+			id
+			name
+			price
+			image
+			description
+			unit
+			farm {
+				user {
+					id
+				}
+			}
+		}
+	}
+`;
+const UPDATE_PRODUCT_MUTATION = gql`
+	mutation UPDATE_PRODUCT_MUTATION(
 		$name: String!
 		$description: String!
 		$price: Int!
@@ -43,16 +61,9 @@ const CREATE_PRODUCT_MUTATION = gql`
 	}
 `;
 
-class CreateProduct extends Component {
+class UpdateProduct extends Component {
 	// State for Form
-	state = {
-		name: '',
-		unit: '',
-		price: '',
-		description: '',
-		image: '',
-		farmId: ''
-	};
+	state = {};
 
 	// Enter Information Value Handler
 	saveToState = e => {
@@ -63,33 +74,15 @@ class CreateProduct extends Component {
 		this.setState({ unit: data.value });
 	};
 
-	componentDidMount() {
-		this.setState({ farmId: this.props.id });
-	}
-
 	render() {
 		return (
-			<Mutation
-				mutation={CREATE_PRODUCT_MUTATION}
-				variables={this.state}
-				refetchQueries={[
-					{
-						query: PRODUCTS_QUERY,
-						variables: { farmId: this.state.farmId }
-					}
-				]}>
-				{(createProduct, { error, loading }) => {
-					if (error) return <Error error={error} />;
+			<Query query={INDIVIDUAL_PRODUCT_QUERY} variables={this.props.id}>
+				{({ data, error, loading }) => {
+					console.log(data);
 					return (
 						<CreateProductStyling>
-							<h3>Add Product to Farm</h3>
-							<Form
-								method="post"
-								loading={loading}
-								onSubmit={async e => {
-									e.preventDefault();
-									const res = await createProduct();
-								}}>
+							<h3>Edit {this.props.id}</h3>
+							<Form method="post">
 								<Form.Group>
 									<Form.Field width={4}>
 										<label>Product Name</label>
@@ -119,7 +112,7 @@ class CreateProduct extends Component {
 										<label>Price</label>
 										<Input
 											labelPosition="right"
-											type="number"
+											type="text"
 											name="price"
 											id="price"
 											placeholder="Whole Dollars"
@@ -142,16 +135,16 @@ class CreateProduct extends Component {
 									/>
 									<Button type="submit" icon labelPosition="right">
 										Add
-										{loading ? 'ing' : ''} <Icon name="up arrow" />
 									</Button>
 								</Form.Group>
 							</Form>
 						</CreateProductStyling>
 					);
 				}}
-			</Mutation>
+			</Query>
 		);
 	}
 }
 
-export default CreateProduct;
+export default UpdateProduct;
+export {INDIVIDUAL_PRODUCT_QUERY}

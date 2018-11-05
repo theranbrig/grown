@@ -29,7 +29,7 @@ type Farm {
 	email: String!
 	phone: String!
 	image: String!
-	website: String!
+	website: String
 	user: User!
 }
 
