@@ -13,7 +13,7 @@ type Mutation {
 		phone: String!
 		image: String!
 		website: String!
-		tagline: String!
+		tagline: String
 	): Farm!
 	updateFarm(
 		id: ID!
@@ -32,6 +32,22 @@ type Mutation {
 	signout: SuccessMessage
 	requestReset(email: String!): SuccessMessage
 	resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
+	createProduct(
+		name: String!
+		description: String!
+		image: String
+		price: Int!
+		unit: String
+		farmId: String
+	): Product!
+	updateProduct(
+		name: String!
+		description: String!
+		image: String
+		price: Int!
+		unit: String
+		farmId: String
+	): Product!
 }
 
 type Query {
@@ -39,4 +55,12 @@ type Query {
 	farm(where: FarmWhereUniqueInput!): Farm
 	farmsConnection(where: FarmWhereInput): FarmConnection!
 	me: User
+	products(
+		where: ProductWhereInput
+		orderBy: ProductOrderByInput
+		skip: Int
+		first: Int
+		unit: String
+	): [Product]!
+	product(where: ProductWhereUniqueInput!, skip: Boolean): Product
 }
