@@ -14,7 +14,9 @@ const Query = {
 			},
 			info
 		);
-	}
+	},
+	products: forwardTo('db'),
+	product: forwardTo('db')
 };
 
 module.exports = Query;

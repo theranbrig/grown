@@ -4,6 +4,7 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { transport, resetPasswordEmail } = require('../mail');
 const { hasPermission } = require('../utils');
+require('dotenv').config({ path: 'variables.env' });
 
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
@@ -107,6 +108,7 @@ const Mutations = {
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24 * 14 // Two week token
 		});
+		console.log(token);
 		console.log('You Logged In');
 		return user;
 	},
@@ -179,6 +181,46 @@ const Mutations = {
 		});
 		console.log('You Logged In');
 		return updatedUser;
+	},
+
+	async createProduct(parent, args, ctx, info) {
+		const farmID = args.farmId;
+		const product = await ctx.db.mutation.createProduct(
+			{
+				data: {
+					farm: {
+						connect: {
+							id: farmID
+						}
+					},
+					...args
+				}
+			},
+			info
+		);
+		console.log(product);
+		return product;
+	},
+
+	updateProduct(parent, args, ctx, info) {
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
+
+		// Create Updates
+		const updates = { ...args };
+		console.log(updates);
+		// Remove new ID to save old ID over it
+		delete updates.id;
+		return ctx.db.mutation.updateProduct(
+			{
+				data: updates,
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
 	}
 };
 
