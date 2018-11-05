@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import User from './User';
+import UpdateProduct from './UpdateProduct';
+import { INDIVIDUAL_PRODUCT_QUERY } from './UpdateProduct';
 
 const StoreStyling = styled.div`
 	.ui.table thead th {
@@ -42,6 +44,15 @@ const PRODUCTS_QUERY = gql`
 `;
 
 class Store extends Component {
+	state = {
+		id: null
+	};
+
+	sayHello = value => {
+		console.log(value);
+		this.setState({ id: value });
+	};
+
 	render() {
 		return (
 			<User>
@@ -69,24 +80,27 @@ class Store extends Component {
 												</Table.Row>
 											);
 										return data.products.map(product => (
-											<Table.Row>
+											<Table.Row key={product.id}>
 												<Table.Cell width={4}>{product.name}</Table.Cell>
 												<Table.Cell width={8}>{product.description}</Table.Cell>
 												<Table.Cell width={2}>
 													<Icon name="dollar sign" /> {product.price} / {product.unit}
 												</Table.Cell>
 												<Table.Cell width={2}>
-													<Button type="submit" icon labelPosition="right">
+													<Button icon labelPosition="right">
 														Add
-														{loading ? 'ing' : ''}
 														<Icon name="shopping basket" />
 													</Button>
 												</Table.Cell>
 												{me &&
 													me.id === product.farm.user.id && (
 														<Table.Cell textAlign="right" width={1}>
-															<Icon name="delete" />
-															<Icon name="edit" />
+															<Button>
+																<Icon name="delete" />
+															</Button>
+															<Button>
+																<Icon name="edit" onClick={e => this.sayHello(product.id)} />
+															</Button>
 														</Table.Cell>
 													)}
 											</Table.Row>

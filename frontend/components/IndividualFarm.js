@@ -58,7 +58,7 @@ class IndividualFarm extends Component {
 														return (
 															<ul>
 																{data.products.slice(0, 5).map(product => (
-																	<li>{product.name}</li>
+																	<li key={product.id}>{product.name}</li>
 																))}
 															</ul>
 														);
@@ -108,7 +108,7 @@ class IndividualFarm extends Component {
 									<Grid container centered>
 										<Grid.Column width={16}>
 											<Store id={farm.id} name={farm.name} />
-											{me && me.id === farm.user.id && <CreateProduct id={farm.id}/>}
+											{me && me.id === farm.user.id && <CreateProduct id={farm.id} />}
 										</Grid.Column>
 									</Grid>
 								</StyledFarmInfo>

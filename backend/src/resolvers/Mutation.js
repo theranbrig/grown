@@ -200,6 +200,27 @@ const Mutations = {
 		);
 		console.log(product);
 		return product;
+	},
+
+	updateProduct(parent, args, ctx, info) {
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
+
+		// Create Updates
+		const updates = { ...args };
+		console.log(updates);
+		// Remove new ID to save old ID over it
+		delete updates.id;
+		return ctx.db.mutation.updateProduct(
+			{
+				data: updates,
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
 	}
 };
 
