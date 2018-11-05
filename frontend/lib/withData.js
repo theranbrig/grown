@@ -11,7 +11,7 @@ function createClient({ headers }) {
 		request: async operation => {
 			operation.setContext({
 				fetchOptions: {
-					credentials: 'include'
+					credentials: 'same-origin'
 				},
 				headers
 			});
