@@ -26,7 +26,6 @@ const Mutations = {
 		console.log(farm);
 		return farm;
 	},
-
 	updateFarm(parent, args, ctx, info) {
 		if (!ctx.request.userId) {
 			throw new Error('You must be logged in to do that!');
@@ -47,7 +46,6 @@ const Mutations = {
 			info
 		);
 	},
-
 	async deleteFarm(parent, args, ctx, info) {
 		const where = { id: args.id };
 		// Find item in db
@@ -64,7 +62,6 @@ const Mutations = {
 		// Delete
 		return ctx.db.mutation.deleteFarm({ where }, info);
 	},
-
 	async signup(parent, args, ctx, info) {
 		args.email = args.email.toLowerCase();
 		// Hash Password
@@ -80,7 +77,7 @@ const Mutations = {
 			info
 		);
 		// Create JWT
-		const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+		const token = jwt.sign({ userId: user.id }, 'BIGSECRET');
 		// Set JWT as cookie for response
 		ctx.response.cookie('token', token, {
 			httpOnly: true,
@@ -89,28 +86,27 @@ const Mutations = {
 		console.log('You Signed Up');
 		return user;
 	},
-
 	async signin(parent, { email, password }, ctx, info) {
+		// 1. check if there is a user with that email
 		const user = await ctx.db.query.user({ where: { email } });
-		// Check if user exists
 		if (!user) {
-			throw new Error(`No such user fround for email ${email}`);
+			throw new Error(`No such user found for email ${email}`);
 		}
-		// Check if password is correct
+		// 2. Check if their password is correct
 		const valid = await bcrypt.compare(password, user.password);
 		if (!valid) {
-			throw new Error('Wrong Password!');
+			throw new Error('Invalid Password!');
 		}
-		// Create JWT
-		const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-		// Set JWT as cookie for response
+		// 3. generate the JWT Token
+		const token = jwt.sign({ userId: user.id }, 'BIGSECRET');
+		// 4. Set the cookie with the token
 		ctx.response.cookie('token', token, {
 			httpOnly: true,
-			maxAge: 1000 * 60 * 60 * 24 * 14 // Two week token
+			maxAge: 1000 * 60 * 60 * 24 * 365
 		});
+		// 5. Return the user
 		return user;
 	},
-
 	async signout(parent, args, ctx, info) {
 		ctx.response.clearCookie('token');
 		return { message: 'Goodbye!' };
@@ -171,7 +167,7 @@ const Mutations = {
 			}
 		});
 		// Create JWT
-		const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
+		const token = jwt.sign({ userId: updatedUser.id }, 'BIGSECRET');
 		// Set JWT as cookie for response
 		ctx.response.cookie('token', token, {
 			httpOnly: true,
@@ -180,7 +176,6 @@ const Mutations = {
 		console.log('You Logged In');
 		return updatedUser;
 	},
-
 	async createProduct(parent, args, ctx, info) {
 		const farmID = args.farmId;
 		const product = await ctx.db.mutation.createProduct(
@@ -199,12 +194,10 @@ const Mutations = {
 		console.log(product);
 		return product;
 	},
-
 	updateProduct(parent, args, ctx, info) {
 		if (!ctx.request.userId) {
 			throw new Error('You must be logged in to do that!');
 		}
-
 		// Create Updates
 		const updates = { ...args };
 		console.log(updates);
