@@ -10,14 +10,14 @@ server.express.use(cookieParser());
 
 // Express middleware to handle cookies (JWT)
 
-server.express.use((req, res, next) => {
-	const { token } = req.cookies;
-	if (token) {
-		const { userId } = jwt.verify(token, process.env.APP_SECRET);
-		req.userId = userId;
-	}
-	next();
-});
+// server.express.use((req, res, next) => {
+// 	const { token } = req.cookies;
+// 	if (token) {
+// 		const { userId } = jwt.verify(token, process.env.APP_SECRET);
+// 		req.userId = userId;
+// 	}
+// 	next();
+// });
 
 // Express middleware to populate current user
 
