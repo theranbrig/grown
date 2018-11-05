@@ -108,8 +108,6 @@ const Mutations = {
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24 * 14 // Two week token
 		});
-		console.log(token);
-		console.log('You Logged In');
 		return user;
 	},
 
