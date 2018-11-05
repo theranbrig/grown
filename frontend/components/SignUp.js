@@ -47,12 +47,14 @@ class SignUp extends Component {
 						if (!me)
 							return (
 								<FormStyling>
-									<h1>Sign Up for <span>GROWN</span></h1>
+									<h1>
+										Sign Up for <span>GROWN</span>
+									</h1>
 									<Mutation
 										mutation={JOIN_MUTATION}
 										variables={this.state}
-										refetchQueries={CURRENT_USER_QUERY}
-										onCompleted={this.formComplete}>
+										onCompleted={this.formComplete}
+										refetchQueries={CURRENT_USER_QUERY}>
 										{(signup, { error, loading }) => {
 											if (error) return <Error error={error} />;
 											return (
@@ -64,9 +66,6 @@ class SignUp extends Component {
 														e.preventDefault();
 														await signup();
 														this.setState({ name: '', email: '', password: '' });
-														Router.push({
-															pathname: '/browse'
-														});
 													}}>
 													<Form.Group>
 														<Form.Field width={16}>

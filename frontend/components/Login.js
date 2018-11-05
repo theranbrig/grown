@@ -52,8 +52,8 @@ class Login extends Component {
 									<Mutation
 										mutation={LOGIN_MUTATION}
 										variables={this.state}
-										refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-										onCompleted={this.formComplete}>
+										onCompleted={this.formComplete}
+										refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
 										{(signin, { loading, error, onCompleted }) => {
 											if (error) return <Error error={error} />;
 											return (
