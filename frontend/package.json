@@ -10,12 +10,6 @@
 		"test": "NODE_ENV=test jest --watch",
 		"heroku-postbuild": "next build"
 	},
-	"now": {
-		"name": "frontend",
-		"alias": [
-			"grown-frontend-byhvzjgosu.now.sh"
-		]
-	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
