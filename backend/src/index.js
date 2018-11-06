@@ -9,9 +9,10 @@ const server = createServer();
 server.express.use(cookieParser());
 
 server.express.use((req, res, next) => {
-	const { token } = req.cookies;
+	const { token } = req.cookies || req.headers.cookies;
 	if (token) {
-		const { userId } = jwt.verify(token, "BIGSECRET");
+		const { userId } = jwt.verify(token, 'BIGSECRET');
+		console.log(userId);
 		req.userId = userId;
 	}
 	next();
@@ -28,12 +29,12 @@ server.express.use(async (req, res, next) => {
 });
 
 server.start(
-	// {
-	// 	cors: {
-	// 		credentials: true,
-	// 		origin: process.env.FRONTEND_URL
-	// 	}
-	// },
+	{
+		cors: {
+			credentials: true,
+			origin: process.env.FRONTEND_URL
+		}
+	},
 	deets => {
 		console.log(`Server is now running on port http://localhost:${deets.port}`);
 	}
