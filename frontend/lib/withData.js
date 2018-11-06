@@ -10,12 +10,12 @@ function createClient({ headers }) {
 		cache: new InMemoryCache(),
 		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
 		credentials: 'include',
-		request: operation => {
+		request: async operation => {
 			operation.setContext({
 				fetchOptions: {
 					credentials: 'include'
 				},
-				headers
+				...headers
 			});
 		},
 		// Local Data
