@@ -8,10 +8,10 @@ const server = createServer();
 
 server.express.use(cookieParser());
 
-server.express.use((req, res, next) => {
+server.express.use(async (req, res, next) => {
 	const { token } = req.cookies || req.headers.cookies;
 	if (token) {
-		const { userId } = jwt.verify(token, 'BIGSECRET');
+		const { userId } = await jwt.verify(token, 'BIGSECRET');
 		console.log(userId);
 		req.userId = userId;
 	}
