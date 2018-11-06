@@ -12,10 +12,10 @@ function createClient({ headers }) {
 		credentials: 'include',
 		request: operation => {
 			operation.setContext({
-				// fetchOptions: {
-				// 	credentials: 'include'
-				// },
-				// headers
+				fetchOptions: {
+					credentials: 'include'
+				},
+				headers
 			});
 		},
 		// Local Data
