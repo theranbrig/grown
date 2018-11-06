@@ -8,14 +8,15 @@ function createClient({ headers }) {
 	return new ApolloClient({
 		cache: new InMemoryCache(),
 		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
-		request: operation => {
-			operation.setContext({
-				fetchOptions: {
-					credentials: 'include'
-				},
-				headers
-			});
-		},
+		credentials: 'include',
+		// request: operation => {
+		// 	operation.setContext({
+		// 		fetchOptions: {
+		// 			credentials: 'include'
+		// 		},
+		// 		headers
+		// 	});
+		// },
 		// Local Data
 		clientState: {
 			resolvers: {}
