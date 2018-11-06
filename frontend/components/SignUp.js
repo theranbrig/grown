@@ -54,7 +54,7 @@ class SignUp extends Component {
 										mutation={JOIN_MUTATION}
 										variables={this.state}
 										onCompleted={this.formComplete}
-										refetchQueries={CURRENT_USER_QUERY}>
+										refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
 										{(signup, { error, loading }) => {
 											if (error) return <Error error={error} />;
 											return (
