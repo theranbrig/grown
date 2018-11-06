@@ -1,13 +1,16 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { promisify } = require('util');
 const { randomBytes } = require('crypto');
+const { promisify } = require('util');
 const { transport, resetPasswordEmail } = require('../mail');
 const { hasPermission } = require('../utils');
 require('dotenv').config({ path: 'variables.env' });
 
 const Mutations = {
 	async createFarm(parent, args, ctx, info) {
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
 		// Create Item
 		const farm = ctx.db.mutation.createFarm(
 			{
@@ -77,7 +80,7 @@ const Mutations = {
 			info
 		);
 		// Create JWT
-		const token = jwt.sign({ userId: user.id }, 'BIGSECRET');
+		const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 		// Set JWT as cookie for response
 		ctx.response.cookie('token', token, {
 			httpOnly: true,
@@ -98,7 +101,7 @@ const Mutations = {
 			throw new Error('Invalid Password!');
 		}
 		// 3. generate the JWT Token
-		const token = jwt.sign({ userId: user.id }, 'BIGSECRET');
+		const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 		// 4. Set the cookie with the token
 		ctx.response.cookie('token', token, {
 			httpOnly: true,
@@ -167,7 +170,7 @@ const Mutations = {
 			}
 		});
 		// Create JWT
-		const token = jwt.sign({ userId: updatedUser.id }, 'BIGSECRET');
+		const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
 		// Set JWT as cookie for response
 		ctx.response.cookie('token', token, {
 			httpOnly: true,
