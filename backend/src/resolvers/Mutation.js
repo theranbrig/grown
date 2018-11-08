@@ -215,7 +215,15 @@ const Mutations = {
 			},
 			info
 		);
-	}
+	},
+	async deleteProduct(parent, args, ctx, info) {
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
+		const where = { id: args.id };
+		// TODO: CHECK FARM OWNER
+		return ctx.db.mutation.deleteProduct({ where }, info);
+	},
 };
 
 module.exports = Mutations;
