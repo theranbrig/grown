@@ -41,13 +41,15 @@ type Mutation {
 		farmId: String
 	): Product!
 	updateProduct(
-		name: String!
-		description: String!
+		id: ID!
+		name: String
+		description: String
 		image: String
-		price: Int!
+		price: Int
 		unit: String
 		farmId: String
 	): Product!
+	deleteProduct(id: ID!): Product
 }
 
 type Query {
