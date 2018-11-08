@@ -89,6 +89,13 @@ class CreateProduct extends Component {
 								onSubmit={async e => {
 									e.preventDefault();
 									const res = await createProduct();
+									this.setState({
+											name: '',
+											unit: '',
+											price: '',
+											description: '',
+											image: '',
+									})
 								}}>
 								<Form.Group>
 									<Form.Field width={4}>
