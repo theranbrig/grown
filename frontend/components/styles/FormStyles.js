@@ -5,6 +5,9 @@ const FormStyling = styled.div`
 	max-width: 95%;
 	margin: 70px auto 300px;
 	text-align: center;
+	input#price {
+		text-align: right
+	}
 	ul {
 		list-style-type: none;
 		padding: 0;
