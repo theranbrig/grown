@@ -1,8 +1,0 @@
-# endpoint: ${env:PRISMA_ENDPOINT}
-endpoint: https://grown-farms-db-497270b455.herokuapp.com/backend/dev
-# endpoint: https://grown-farms-db-497270b455.herokuapp.com/grown-back/prod
-datamodel: datamodel.graphql
-secret: ${env:PRISMA_SECRET}
-hooks:
-  post-deploy:
-    - graphql get-schema -p prisma
