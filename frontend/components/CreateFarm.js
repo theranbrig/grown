@@ -10,6 +10,7 @@ import User from './User';
 import LoggedIn from './LoggedIn';
 import Router from 'next/router';
 import Error from './ErrorMessage';
+import { ALL_FARMS_QUERY } from './Farms';
 
 // Sign Up User Mutation
 const CREATE_FARM_MUTATION = gql`
