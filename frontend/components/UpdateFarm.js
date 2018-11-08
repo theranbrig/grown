@@ -101,7 +101,11 @@ class UpdateFarm extends Component {
 
 	render() {
 		return (
-			<Query query={INDIVIDUAL_FARM_QUERY} variables={{ id: this.props.id }}>
+			<Query
+				query={INDIVIDUAL_FARM_QUERY}
+				variables={{ id: this.props.id }}
+				refetchQueries={[{ query: INDIVIDUAL_FARM_QUERY }]}
+				onCompleted={this.setCompleted}>
 				{({ data, loading }) => {
 					const farm = data.farm;
 					if (loading) return <Loader active inline />;
