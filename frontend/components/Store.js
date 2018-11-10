@@ -7,6 +7,7 @@ import User from './User';
 import UpdateProduct, { INDIVIDUAL_PRODUCT_QUERY } from './UpdateProduct';
 import DeleteProductButton from './DeleteProductButton';
 import Link from 'next/link';
+import AddToCart from './AddToCart';
 
 const StoreStyling = styled.div`
 	.ui.table thead th {
@@ -19,7 +20,8 @@ const StoreStyling = styled.div`
 		width: 90%;
 	}
 	i {
-		font-size: 0.8rem;
+		font-size: 1.5rem;
+		margin-right: 2px;
 	}
 	h2 {
 		width: 80%;
@@ -105,30 +107,26 @@ class Store extends Component {
 														<Icon name="dollar sign" /> {product.price} / {product.unit}
 													</Table.Cell>
 													<Table.Cell width={2}>
-														<Button icon labelPosition="right">
-															Add {loading ? 'ing' : ' '}
-															<Icon name="cart plus" />
-														</Button>
+														<AddToCart id={product.id} />
 													</Table.Cell>
-													{me &&
-														me.id === product.farm.user.id && (
-															<>
-																<Table.Cell textAlign="right" width={1}>
-																	<Link
-																		href={{
-																			pathname: '/updateproduct',
-																			query: { id: product.id }
-																		}}>
-																		<a>
-																			<Icon name="edit" />
-																		</a>
-																	</Link>
-																</Table.Cell>
-																<Table.Cell textAlign="right" width={1}>
-																	<DeleteProductButton id={product.id} />
-																</Table.Cell>
-															</>
-														)}
+													{me && me.id === product.farm.user.id && (
+														<>
+															<Table.Cell textAlign="right" width={1}>
+																<Link
+																	href={{
+																		pathname: '/updateproduct',
+																		query: { id: product.id }
+																	}}>
+																	<a>
+																		<Icon name="edit" />
+																	</a>
+																</Link>
+															</Table.Cell>
+															<Table.Cell textAlign="right" width={1}>
+																<DeleteProductButton id={product.id} />
+															</Table.Cell>
+														</>
+													)}
 												</Table.Row>
 											))}
 										</Table.Body>

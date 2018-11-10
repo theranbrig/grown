@@ -50,6 +50,7 @@ type Mutation {
 		farmId: String
 	): Product!
 	deleteProduct(id: ID!): Product
+  addToCart(id: ID!): CartProduct
 }
 
 type Query {
