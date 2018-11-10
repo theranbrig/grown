@@ -2,11 +2,13 @@ import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 import User from './User';
 import SignOut from './SignOut';
+import { Mutation } from 'react-apollo';
+import { TOGGLE_CART_MUTATION } from './Cart';
+import { Icon } from 'semantic-ui-react';
 
 const Nav = () => (
 	<User>
 		{({ data: { me } }) => {
-			console.log(me);
 			return (
 				<NavStyles className="navigation-bar">
 					<Link href="/">
@@ -17,10 +19,17 @@ const Nav = () => (
 					</Link>
 					{me && (
 						<>
-							<Link href="/browse">
-								<a>ACCOUNT</a>
-							</Link>
-							<SignOut />
+							{/* <Link href="/browse">
+								<a>Orders</a>
+							</Link> */}
+							<Mutation mutation={TOGGLE_CART_MUTATION}>
+								{toggleCart => (
+									<button onClick={toggleCart}>
+										<Icon name="shopping cart" />{' '}
+										{me.cart.reduce((tally, product) => tally + product.quantity, 0)}
+									</button>
+								)}
+							</Mutation>
 						</>
 					)}
 					{/*<Link href="/markets">

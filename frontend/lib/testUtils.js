@@ -25,7 +25,6 @@ const fakeUser = () => ({
 	cart: []
 });
 
-
 // Fake LocalStorage
 class LocalStorageMock {
 	constructor() {
