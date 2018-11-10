@@ -224,6 +224,41 @@ const Mutations = {
 		// TODO: CHECK FARM OWNER
 		return ctx.db.mutation.deleteProduct({ where }, info);
 	},
+	async addToCart(parent, args, ctx, info) {
+		const { userId } = ctx.request;
+		if (!userId) {
+			throw new Error('You must be logged in to do that.');
+		}
+		const [existingCartProduct] = await ctx.db.query.cartProducts({
+			where: {
+				user: { id: userId },
+				product: { id: args.id }
+			}
+		});
+		if (existingCartProduct) {
+			console.log('This product is in your cart.');
+			return ctx.db.mutation.updateCartProduct(
+				{
+					where: { id: existingCartProduct.id },
+					data: { quantity: existingCartProduct.quantity + 1 }
+				},
+				info
+			);
+		}
+		return ctx.db.mutation.createCartProduct(
+			{
+				data: {
+					user: {
+						connect: { id: userId }
+					},
+					product: {
+						connect: { id: args.id }
+					}
+				}
+			},
+			info
+		);
+	}
 };
 
 module.exports = Mutations;

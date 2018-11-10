@@ -17,4 +17,5 @@ frontend/.vscode
 frontend/.env
 
 backend/prisma.yml
+frontend/config.js
 
