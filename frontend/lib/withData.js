@@ -1,13 +1,12 @@
 import ApolloClient from 'apollo-boost';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import withApollo from 'next-with-apollo';
 import { endpoint, prodEndpoint } from '../config';
+import { LOCAL_STATE_QUERY } from '../components/Cart';
 
 function createClient({ headers }) {
 	console.log(headers);
 	// Set up apollo client
 	return new ApolloClient({
-		cache: new InMemoryCache(),
 		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
 		credentials: 'include',
 		request: async operation => {
@@ -20,7 +19,25 @@ function createClient({ headers }) {
 		},
 		// Local Data
 		clientState: {
-			resolvers: {}
+			resolvers: {
+				Mutation: {
+					toggleCart(_, variables, { cache }) {
+						// read the cartOpen value from the cache
+						const { cartOpen } = cache.readQuery({
+							query: LOCAL_STATE_QUERY
+						});
+						// Write the cart State to the opposite
+						const data = {
+							data: { cartOpen: !cartOpen }
+						};
+						cache.writeData(data);
+						return data;
+					}
+				}
+			},
+			defaults: {
+				cartOpen: false
+			}
 		}
 	});
 }

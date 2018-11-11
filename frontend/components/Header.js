@@ -2,6 +2,8 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import styled from 'styled-components';
 import Nav from './Nav';
+import Cart from './Cart';
+import User from './User';
 
 Router.onRouteChangeStart = () => {
 	NProgress.start();
@@ -56,14 +58,17 @@ const StyledHeader = styled.header`
 
 const Header = () => (
 	<StyledHeader>
-		<Logo className="bar">
-			<div>
-				<a href="/">
-					<img width="150" src="https://i.imgur.com/Gcwggjm.png" alt="Grown Logo" />
-				</a>
-			</div>
-			<Nav />
-		</Logo>
+		<div>
+			<Logo className="bar">
+				<div>
+					<a href="/">
+						<img width="150" src="https://i.imgur.com/Gcwggjm.png" alt="Grown Logo" />
+					</a>
+				</div>
+				<Nav />
+			</Logo>
+		</div>
+		<User>{({ data: { me } }) => me && <Cart />}</User>
 	</StyledHeader>
 );
 
