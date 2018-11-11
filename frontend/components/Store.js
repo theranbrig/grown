@@ -20,12 +20,25 @@ const StoreStyling = styled.div`
 		width: 90%;
 	}
 	i {
+		color: ${props => props.theme.darkBlue};
 		font-size: 1.5rem;
 		margin-right: 2px;
 	}
 	h2 {
 		width: 80%;
 		text-align: center;
+	}
+	.delete-button button {
+		background: transparent !important;
+		font-size: 1.5rem;
+		width: 28px;
+		padding: 0px 5px;
+	}
+	button.ui.icon.button {
+		padding: 8px 0;
+		i {
+			font-size: 1.5rem;
+		}
 	}
 `;
 
@@ -106,7 +119,7 @@ class Store extends Component {
 													<Table.Cell width={2}>
 														<Icon name="dollar sign" /> {product.price} / {product.unit}
 													</Table.Cell>
-													<Table.Cell width={2}>
+													<Table.Cell textAlign="center" width={3}>
 														<AddToCart id={product.id} />
 													</Table.Cell>
 													{me && me.id === product.farm.user.id && (
@@ -122,7 +135,7 @@ class Store extends Component {
 																	</a>
 																</Link>
 															</Table.Cell>
-															<Table.Cell textAlign="right" width={1}>
+															<Table.Cell textAlign="right" width={1} className="delete-button">
 																<DeleteProductButton id={product.id} />
 															</Table.Cell>
 														</>

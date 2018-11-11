@@ -9,6 +9,10 @@ import { Button, Icon, Segment, List, Label } from 'semantic-ui-react';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import Link from 'next/link';
 import BuyMe from './BuyMe';
+import RemoveProduct from './RemoveCartProduct';
+import AddToCart from './AddToCart';
+import AddAnother from './AddAnother';
+import RemoveOne from './RemoveOne';
 
 const LOCAL_STATE_QUERY = gql`
 	query {
@@ -48,7 +52,7 @@ const Cart = () => (
 					</header>
 					<List animated divided>
 						{me.cart.map(cartProduct => (
-							<List.Item>
+							<List.Item key={cartProduct.id}>
 								<List.Header>
 									<Link href={`/farm?id=${cartProduct.product.farm.id}`}>
 										<a>{cartProduct.product.name}</a>
@@ -64,6 +68,11 @@ const Cart = () => (
 										.00
 									</strong>
 								</p>
+								<div className="cart-item-buttons">
+									<RemoveOne id={cartProduct.product.id} />
+									<AddAnother id={cartProduct.product.id} />
+									<RemoveProduct id={cartProduct.id} />
+								</div>
 							</List.Item>
 						))}
 					</List>

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Information Box should render the Home Information Box 1`] = `
+Array [
+  <Header
+    as="h2"
+  >
+    <h2
+      className="ui header"
+    >
+      Title
+    </h2>
+  </Header>,
+  <Header
+    as="h3"
+  >
+    <h3
+      className="ui header"
+    />
+  </Header>,
+]
+`;
+
+exports[`Home Information Box should render the Home Information Box 2`] = `
+<Image
+  as="img"
+  centered={true}
+  className="wow fadeInLeft point-image"
+  data-wow-duration="2s"
+  responsive="true"
+  src="picture.jpg"
+  ui={true}
+  verticalAlign="middle"
+>
+  <img
+    className="ui centered middle aligned image wow fadeInLeft point-image"
+    data-wow-duration="2s"
+    responsive="true"
+    src="picture.jpg"
+  />
+</Image>
+`;
+
+exports[`NavBar should render the Navbar 1`] = `
+Array [
+  <NavStyles
+    className="navigation-bar"
+  >
+    <ul
+      className="navigation-bar NavStyles-sc-1uctv9x-0 kAIeCk"
+    >
+      <Link
+        href="/"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </Link>
+      <Link
+        href="/browse"
+      >
+        <a
+          href="/browse"
+          onClick={[Function]}
+        >
+          Farms
+        </a>
+      </Link>
+      <Link
+        href="/login"
+      >
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+          Login
+        </a>
+      </Link>
+    </ul>
+  </NavStyles>,
+  <ul
+    className="navigation-bar NavStyles-sc-1uctv9x-0 kAIeCk"
+  >
+    <Link
+      href="/"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+    </Link>
+    <Link
+      href="/browse"
+    >
+      <a
+        href="/browse"
+        onClick={[Function]}
+      >
+        Farms
+      </a>
+    </Link>
+    <Link
+      href="/login"
+    >
+      <a
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
+      </a>
+    </Link>
+  </ul>,
+]
+`;

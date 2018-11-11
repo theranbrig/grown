@@ -13,6 +13,7 @@ const CURRENT_USER_QUERY = gql`
 				id
 				quantity
 				product {
+					id
 					name
 					price
 					unit
