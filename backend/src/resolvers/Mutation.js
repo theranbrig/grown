@@ -224,6 +224,85 @@ const Mutations = {
 		// TODO: CHECK FARM OWNER
 		return ctx.db.mutation.deleteProduct({ where }, info);
 	},
+	async addToCart(parent, args, ctx, info) {
+		const { userId } = ctx.request;
+		if (!userId) {
+			throw new Error('You must be logged in to do that.');
+		}
+		const [existingCartProduct] = await ctx.db.query.cartProducts({
+			where: {
+				user: { id: userId },
+				product: { id: args.id }
+			}
+		});
+		if (existingCartProduct) {
+			console.log('This product is in your cart.');
+			return ctx.db.mutation.updateCartProduct(
+				{
+					where: { id: existingCartProduct.id },
+					data: { quantity: existingCartProduct.quantity + 1 }
+				},
+				info
+			);
+		}
+		return ctx.db.mutation.createCartProduct(
+			{
+				data: {
+					user: {
+						connect: { id: userId }
+					},
+					product: {
+						connect: { id: args.id }
+					}
+				}
+			},
+			info
+		);
+	},
+	async removeFromCart(parent, args, ctx, info) {
+		const cartProduct = await ctx.db.query.cartProduct(
+			{
+				where: {
+					id: args.id
+				}
+			},
+			`{id, user {id}}`
+		);
+		if (!cartProduct) throw new Error('Product not found.');
+		if (cartProduct.user.id !== ctx.request.userId) {
+			throw new Error('User Id Error');
+		}
+		return ctx.db.mutation.deleteCartProduct(
+			{
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
+	},
+	async removeOneFromCart(parent, args, ctx, info) {
+		const { userId } = ctx.request;
+		if (!userId) {
+			throw new Error('You must be logged in to do that.');
+		}
+		const [existingCartProduct] = await ctx.db.query.cartProducts({
+			where: {
+				user: { id: userId },
+				product: { id: args.id }
+			}
+		});
+		if (existingCartProduct && existingCartProduct.quantity > 1) {
+			console.log('This product is in your cart.');
+			return ctx.db.mutation.updateCartProduct(
+				{
+					where: { id: existingCartProduct.id },
+					data: { quantity: existingCartProduct.quantity - 1 }
+				},
+				info
+			);
+		}
+	}
 };
 
 module.exports = Mutations;

@@ -7,6 +7,7 @@ import User from './User';
 import UpdateProduct, { INDIVIDUAL_PRODUCT_QUERY } from './UpdateProduct';
 import DeleteProductButton from './DeleteProductButton';
 import Link from 'next/link';
+import AddToCart from './AddToCart';
 
 const StoreStyling = styled.div`
 	.ui.table thead th {
@@ -19,11 +20,25 @@ const StoreStyling = styled.div`
 		width: 90%;
 	}
 	i {
-		font-size: 0.8rem;
+		color: ${props => props.theme.darkBlue};
+		font-size: 1.5rem;
+		margin-right: 2px;
 	}
 	h2 {
 		width: 80%;
 		text-align: center;
+	}
+	.delete-button button {
+		background: transparent !important;
+		font-size: 1.5rem;
+		width: 28px;
+		padding: 0px 5px;
+	}
+	button.ui.icon.button {
+		padding: 8px 0;
+		i {
+			font-size: 1.5rem;
+		}
 	}
 `;
 
@@ -104,31 +119,27 @@ class Store extends Component {
 													<Table.Cell width={2}>
 														<Icon name="dollar sign" /> {product.price} / {product.unit}
 													</Table.Cell>
-													<Table.Cell width={2}>
-														<Button icon labelPosition="right">
-															Add {loading ? 'ing' : ' '}
-															<Icon name="cart plus" />
-														</Button>
+													<Table.Cell textAlign="center" width={3}>
+														<AddToCart id={product.id} />
 													</Table.Cell>
-													{me &&
-														me.id === product.farm.user.id && (
-															<>
-																<Table.Cell textAlign="right" width={1}>
-																	<Link
-																		href={{
-																			pathname: '/updateproduct',
-																			query: { id: product.id }
-																		}}>
-																		<a>
-																			<Icon name="edit" />
-																		</a>
-																	</Link>
-																</Table.Cell>
-																<Table.Cell textAlign="right" width={1}>
-																	<DeleteProductButton id={product.id} />
-																</Table.Cell>
-															</>
-														)}
+													{me && me.id === product.farm.user.id && (
+														<>
+															<Table.Cell textAlign="right" width={1}>
+																<Link
+																	href={{
+																		pathname: '/updateproduct',
+																		query: { id: product.id }
+																	}}>
+																	<a>
+																		<Icon name="edit" />
+																	</a>
+																</Link>
+															</Table.Cell>
+															<Table.Cell textAlign="right" width={1} className="delete-button">
+																<DeleteProductButton id={product.id} />
+															</Table.Cell>
+														</>
+													)}
 												</Table.Row>
 											))}
 										</Table.Body>

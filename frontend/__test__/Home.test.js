@@ -1,7 +1,11 @@
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import wait from 'waait';
+import toJSON from 'enzyme-to-json';
 import Header from '../components/Header';
 import HomeInformationBox from '../components/HomeInformationBox';
 import Nav from '../components/Nav';
+import { CURRENT_USER_QUERY } from '../components/User';
+import { MockedProvider } from 'react-apollo/test-utils';
 
 const fakeBox = {
 	header: 'Title',
@@ -9,6 +13,13 @@ const fakeBox = {
 	information: 'Writing',
 	image: 'picture.jpg'
 };
+
+const notSignedInMocks = [
+	{
+		request: { query: CURRENT_USER_QUERY },
+		result: { data: { me: null } }
+	}
+];
 
 describe('Header', () => {
 	it('should render the Header Logo', () => {
@@ -19,21 +30,31 @@ describe('Header', () => {
 });
 
 describe('NavBar', () => {
-	it('should render the Navbar', () => {
-		const wrapper = shallow(<Nav />);
-		const homeLink = wrapper.find('a');
-		const navigation = wrapper.find('.navigation-bar');
-		expect(homeLink.length).toBe(2);
-		expect(navigation.find('Link').exists()).toBe(true);
+	it('should render the Navbar', async () => {
+		const wrapper = mount(
+			<MockedProvider mocks={notSignedInMocks}>
+				<Nav />
+			</MockedProvider>
+		);
+		await wait();
+		wrapper.update();
+		const nav = wrapper.find('.navigation-bar');
+		expect(toJSON(nav)).toMatchSnapshot();
 	});
 });
 
 describe('Home Information Box', () => {
-	it('should render the Home Information Box', () => {
-		const wrapper = shallow(<HomeInformationBox header={fakeBox.header} image={fakeBox.image} />);
+	it('should render the Home Information Box', async () => {
+		const wrapper = mount(
+			<MockedProvider mocks={notSignedInMocks}>
+				<HomeInformationBox header={fakeBox.header} image={fakeBox.image} />
+			</MockedProvider>
+		);
+		await wait();
+		wrapper.update();
 		const Header = wrapper.find('Header');
-		expect(Header.children().text()).toBe(fakeBox.header);
+		expect(toJSON(Header)).toMatchSnapshot();
 		const img = wrapper.find('Image');
-		expect(img.props().src).toContain(fakeBox.image);
+		expect(toJSON(img)).toMatchSnapshot();
 	});
 });
