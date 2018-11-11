@@ -51,3 +51,21 @@ type CartProduct {
 	product: Product # relationship to Product
 	user: User! # relationship to User
 }
+
+type OrderProduct {
+	id: ID! @unique
+	name: String!
+	description: String!
+	price: Int!
+  farmId: String!
+	quantity: Int! @default(value: 1)
+	user: User
+}
+
+type Order {
+	id: ID! @unique
+	items: [OrderProduct!]!
+	total: Int!
+	user: User!
+	charge: String!
+}

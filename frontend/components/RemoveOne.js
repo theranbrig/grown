@@ -4,34 +4,31 @@ import gql from 'graphql-tag';
 import { CURRENT_USER_QUERY } from './User';
 import { Button, Icon } from 'semantic-ui-react';
 
-const ADD_TO_CART_MUTATION = gql`
+const REMOVE_ONE_MUTATION = gql`
 	mutation addToCart($id: ID!) {
-		addToCart(id: $id) {
+		removeOneFromCart(id: $id) {
 			id
 			quantity
 		}
 	}
 `;
 
-class AddToCart extends React.Component {
+class RemoveOne extends React.Component {
 	render() {
-		const { id } = this.props;
 		return (
 			<Mutation
-				mutation={ADD_TO_CART_MUTATION}
+				mutation={REMOVE_ONE_MUTATION}
 				variables={{
-					id
+					id: this.props.id
 				}}
 				refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
 				{(addToCart, { loading }) => (
-					<Button icon labelPosition="right" disabled={loading} onClick={addToCart}>
-						Add{loading ? 'ing' : ' '} To Cart
-						<Icon name="cart plus" />
+					<Button icon disabled={loading} onClick={addToCart}>
+						<Icon name="minus" />
 					</Button>
 				)}
 			</Mutation>
 		);
 	}
 }
-export default AddToCart;
-export { ADD_TO_CART_MUTATION };
+export default RemoveOne;
