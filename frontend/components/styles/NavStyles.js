@@ -72,6 +72,9 @@ const NavStyles = styled.ul`
 		justify-content: center;
 		font-size: 1rem;
 		margin: 10px 0;
+    p, a, button {
+      padding: 3px 10px;
+    }
 	}
 `;
 

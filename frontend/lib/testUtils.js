@@ -12,7 +12,8 @@ const fakeFarm = () => ({
 	email: 'email@email.com',
 	phone: '123-456-7890',
 	image: 'farm.jpg',
-	website: 'www.farm.com'
+	website: 'www.farm.com',
+	user: fakeUser()
 });
 
 const fakeUser = () => ({
@@ -48,4 +49,4 @@ class LocalStorageMock {
 	}
 }
 
-export { LocalStorageMock, fakeFarm, fakeUser, fakeCartItem, fakeOrder, fakeOrderItem };
+export { LocalStorageMock, fakeFarm, fakeUser };
