@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Link from 'next/link';
-import { perPage } from '../config';
 import PaginationStyles from './styles/PaginationStyles';
 import { Loader, Message } from 'semantic-ui-react';
 
@@ -28,7 +27,7 @@ const Pagination = props => {
 				if (loading) return <Loader active inline />;
 				// Set Pages and Count of total Farms
 				const count = data.farmsConnection.aggregate.count;
-				const pages = Math.ceil(count / perPage);
+				const pages = Math.ceil(count / 6);
 				const page = props.page;
 				return (
 					<PaginationStyles>
