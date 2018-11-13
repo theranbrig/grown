@@ -1,5 +1,5 @@
-# source: https://us1.prisma.sh/theran-3f2473/grown-backend-prisma/dev
-# timestamp: Sun Nov 11 2018 12:53:03 GMT+0900 (Korean Standard Time)
+# source: https://grown-farms-db-497270b455.herokuapp.com/grown-back/prod
+# timestamp: Sun Nov 11 2018 17:54:44 GMT+0900 (Korean Standard Time)
 
 type AggregateCartProduct {
   count: Int!
@@ -88,79 +88,6 @@ type CartProductPreviousValues {
   quantity: Int!
 }
 
-input CartProductScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [CartProductScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [CartProductScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [CartProductScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  quantity: Int
-
-  """All values that are not equal to given value."""
-  quantity_not: Int
-
-  """All values that are contained in given list."""
-  quantity_in: [Int!]
-
-  """All values that are not contained in given list."""
-  quantity_not_in: [Int!]
-
-  """All values less than the given value."""
-  quantity_lt: Int
-
-  """All values less than or equal the given value."""
-  quantity_lte: Int
-
-  """All values greater than the given value."""
-  quantity_gt: Int
-
-  """All values greater than or equal the given value."""
-  quantity_gte: Int
-}
-
 type CartProductSubscriptionPayload {
   mutation: MutationType!
   node: CartProduct
@@ -206,10 +133,6 @@ input CartProductUpdateInput {
   user: UserUpdateOneRequiredWithoutCartInput
 }
 
-input CartProductUpdateManyDataInput {
-  quantity: Int
-}
-
 input CartProductUpdateManyMutationInput {
   quantity: Int
 }
@@ -220,14 +143,7 @@ input CartProductUpdateManyWithoutUserInput {
   disconnect: [CartProductWhereUniqueInput!]
   delete: [CartProductWhereUniqueInput!]
   update: [CartProductUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [CartProductUpdateManyWithWhereNestedInput!]
-  deleteMany: [CartProductScalarWhereInput!]
   upsert: [CartProductUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input CartProductUpdateManyWithWhereNestedInput {
-  where: CartProductScalarWhereInput!
-  data: CartProductUpdateManyDataInput!
 }
 
 input CartProductUpdateWithoutUserDataInput {
@@ -1054,221 +970,6 @@ type OrderProductPreviousValues {
   quantity: Int!
 }
 
-input OrderProductScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [OrderProductScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [OrderProductScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [OrderProductScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  description: String
-
-  """All values that are not equal to given value."""
-  description_not: String
-
-  """All values that are contained in given list."""
-  description_in: [String!]
-
-  """All values that are not contained in given list."""
-  description_not_in: [String!]
-
-  """All values less than the given value."""
-  description_lt: String
-
-  """All values less than or equal the given value."""
-  description_lte: String
-
-  """All values greater than the given value."""
-  description_gt: String
-
-  """All values greater than or equal the given value."""
-  description_gte: String
-
-  """All values containing the given string."""
-  description_contains: String
-
-  """All values not containing the given string."""
-  description_not_contains: String
-
-  """All values starting with the given string."""
-  description_starts_with: String
-
-  """All values not starting with the given string."""
-  description_not_starts_with: String
-
-  """All values ending with the given string."""
-  description_ends_with: String
-
-  """All values not ending with the given string."""
-  description_not_ends_with: String
-  price: Int
-
-  """All values that are not equal to given value."""
-  price_not: Int
-
-  """All values that are contained in given list."""
-  price_in: [Int!]
-
-  """All values that are not contained in given list."""
-  price_not_in: [Int!]
-
-  """All values less than the given value."""
-  price_lt: Int
-
-  """All values less than or equal the given value."""
-  price_lte: Int
-
-  """All values greater than the given value."""
-  price_gt: Int
-
-  """All values greater than or equal the given value."""
-  price_gte: Int
-  farmId: String
-
-  """All values that are not equal to given value."""
-  farmId_not: String
-
-  """All values that are contained in given list."""
-  farmId_in: [String!]
-
-  """All values that are not contained in given list."""
-  farmId_not_in: [String!]
-
-  """All values less than the given value."""
-  farmId_lt: String
-
-  """All values less than or equal the given value."""
-  farmId_lte: String
-
-  """All values greater than the given value."""
-  farmId_gt: String
-
-  """All values greater than or equal the given value."""
-  farmId_gte: String
-
-  """All values containing the given string."""
-  farmId_contains: String
-
-  """All values not containing the given string."""
-  farmId_not_contains: String
-
-  """All values starting with the given string."""
-  farmId_starts_with: String
-
-  """All values not starting with the given string."""
-  farmId_not_starts_with: String
-
-  """All values ending with the given string."""
-  farmId_ends_with: String
-
-  """All values not ending with the given string."""
-  farmId_not_ends_with: String
-  quantity: Int
-
-  """All values that are not equal to given value."""
-  quantity_not: Int
-
-  """All values that are contained in given list."""
-  quantity_in: [Int!]
-
-  """All values that are not contained in given list."""
-  quantity_not_in: [Int!]
-
-  """All values less than the given value."""
-  quantity_lt: Int
-
-  """All values less than or equal the given value."""
-  quantity_lte: Int
-
-  """All values greater than the given value."""
-  quantity_gt: Int
-
-  """All values greater than or equal the given value."""
-  quantity_gte: Int
-}
-
 type OrderProductSubscriptionPayload {
   mutation: MutationType!
   node: OrderProduct
@@ -1326,22 +1027,12 @@ input OrderProductUpdateInput {
   user: UserUpdateOneInput
 }
 
-input OrderProductUpdateManyDataInput {
-  name: String
-  description: String
-  price: Int
-  farmId: String
-  quantity: Int
-}
-
 input OrderProductUpdateManyInput {
   create: [OrderProductCreateInput!]
   connect: [OrderProductWhereUniqueInput!]
   disconnect: [OrderProductWhereUniqueInput!]
   delete: [OrderProductWhereUniqueInput!]
   update: [OrderProductUpdateWithWhereUniqueNestedInput!]
-  updateMany: [OrderProductUpdateManyWithWhereNestedInput!]
-  deleteMany: [OrderProductScalarWhereInput!]
   upsert: [OrderProductUpsertWithWhereUniqueNestedInput!]
 }
 
@@ -1351,11 +1042,6 @@ input OrderProductUpdateManyMutationInput {
   price: Int
   farmId: String
   quantity: Int
-}
-
-input OrderProductUpdateManyWithWhereNestedInput {
-  where: OrderProductScalarWhereInput!
-  data: OrderProductUpdateManyDataInput!
 }
 
 input OrderProductUpdateWithWhereUniqueNestedInput {

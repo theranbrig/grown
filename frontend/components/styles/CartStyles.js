@@ -88,6 +88,8 @@ const CartStyles = styled.div`
 		color: ${props => props.theme.orange};
 		font-size: 1rem;
 		height: 2.8rem;
+		width: 90%;
+		left: 5%;
 		&:hover {
 			color: #efa75f;
 		}
