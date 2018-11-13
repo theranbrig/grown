@@ -52,7 +52,8 @@ type Mutation {
 	deleteProduct(id: ID!): Product
 	addToCart(id: ID!): CartProduct
 	removeFromCart(id: ID!): CartProduct
-  removeOneFromCart(id: ID!): CartProduct
+	removeOneFromCart(id: ID!): CartProduct
+	createOrder(token: String!): Order!
 }
 
 type Query {
@@ -68,4 +69,15 @@ type Query {
 		unit: String
 	): [Product]!
 	product(where: ProductWhereUniqueInput!, skip: Boolean): Product
+	order(id: ID!): Order
+	orders(orderBy: OrderOrderByInput): [Order]!
+}
+
+type User {
+	id: ID!
+	name: String!
+	email: String!
+	permissions: [Permission!]!
+	cart: [CartProduct!]
+	orders: [OrderProduct]
 }
