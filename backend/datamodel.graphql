@@ -57,9 +57,10 @@ type OrderProduct {
 	name: String!
 	description: String!
 	price: Int!
-  farmId: String!
+	farmId: String!
 	quantity: Int! @default(value: 1)
 	user: User
+  product: Product
 }
 
 type Order {
@@ -68,4 +69,6 @@ type Order {
 	total: Int!
 	user: User!
 	charge: String!
+	createdAt: DateTime!
+	updatedAt: DateTime!
 }

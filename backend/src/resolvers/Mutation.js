@@ -4,6 +4,7 @@ const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { transport, resetPasswordEmail } = require('../mail');
 const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 require('dotenv').config({ path: 'variables.env' });
 
 const Mutations = {
@@ -302,6 +303,67 @@ const Mutations = {
 				info
 			);
 		}
+	},
+	async createOrder(parent, args, ctx, info) {
+		const { userId } = ctx.request;
+		if (!userId) throw new Error('You must be logged in to do that.');
+		const user = await ctx.db.query.user(
+			{ where: { id: userId } },
+			`{
+        id
+        name
+        email
+        cart {
+          id
+          quantity
+          product { id name price description farmId }}}`
+		);
+		const cart = user.cart;
+		console.log(cart);
+		// Calculate Total Amount
+		const amount = user.cart.reduce(
+			(tally, cartProduct) => tally + cartProduct.product.price * cartProduct.quantity * 100,
+			0
+		);
+		console.log(`Your total is ${amount}`);
+		// Create Stripe Charge
+		const charge = await stripe.charges.create({
+			amount,
+			currency: 'USD',
+			source: args.token
+		});
+		console.log(charge);
+		const orderProducts = user.cart.map(cartProduct => {
+			console.log(cartProduct);
+			const orderProduct = {
+				...cartProduct.product,
+				quantity: cartProduct.quantity,
+				product: {
+					connect: { id: cartProduct.product.id }
+				},
+				user: { connect: { id: userId } }
+			};
+			delete orderProduct.id;
+			return orderProduct;
+		});
+		console.log(orderProducts);
+		const order = await ctx.db.mutation.createOrder({
+			data: {
+				total: charge.amount,
+				charge: charge.id,
+				items: { create: orderProducts },
+				user: { connect: { id: userId } }
+			}
+		});
+		console.log(order);
+		const cartProductIds = user.cart.map(cartProduct => cartProduct.id);
+		console.log(cartProductIds);
+		await ctx.db.mutation.deleteManyCartProducts({
+			where: {
+				id_in: cartProductIds
+			}
+		});
+		return order;
 	}
 };
 

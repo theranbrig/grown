@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/theran-3f2473/grown-backend-prisma/dev
-# timestamp: Sun Nov 11 2018 12:53:03 GMT+0900 (Korean Standard Time)
+# timestamp: Wed Nov 14 2018 21:11:26 GMT+0900 (Korean Standard Time)
 
 type AggregateCartProduct {
   count: Int!
@@ -324,6 +324,8 @@ input CartProductWhereInput {
 input CartProductWhereUniqueInput {
   id: ID
 }
+
+scalar DateTime
 
 type Farm implements Node {
   id: ID!
@@ -936,6 +938,8 @@ type Order implements Node {
   total: Int!
   user: User!
   charge: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -971,16 +975,18 @@ enum OrderOrderByInput {
   total_DESC
   charge_ASC
   charge_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type OrderPreviousValues {
   id: ID!
   total: Int!
   charge: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type OrderProduct implements Node {
@@ -991,6 +997,7 @@ type OrderProduct implements Node {
   farmId: String!
   quantity: Int!
   user: User
+  product: Product
 }
 
 """A connection to a list of items."""
@@ -1010,6 +1017,7 @@ input OrderProductCreateInput {
   farmId: String!
   quantity: Int
   user: UserCreateOneInput
+  product: ProductCreateOneInput
 }
 
 input OrderProductCreateManyInput {
@@ -1315,6 +1323,7 @@ input OrderProductUpdateDataInput {
   farmId: String
   quantity: Int
   user: UserUpdateOneInput
+  product: ProductUpdateOneInput
 }
 
 input OrderProductUpdateInput {
@@ -1324,6 +1333,7 @@ input OrderProductUpdateInput {
   farmId: String
   quantity: Int
   user: UserUpdateOneInput
+  product: ProductUpdateOneInput
 }
 
 input OrderProductUpdateManyDataInput {
@@ -1583,6 +1593,7 @@ input OrderProductWhereInput {
   """All values greater than or equal the given value."""
   quantity_gte: Int
   user: UserWhereInput
+  product: ProductWhereInput
 }
 
 input OrderProductWhereUniqueInput {
@@ -1751,6 +1762,50 @@ input OrderWhereInput {
 
   """All values not ending with the given string."""
   charge_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   items_every: OrderProductWhereInput
   items_some: OrderProductWhereInput
   items_none: OrderProductWhereInput
