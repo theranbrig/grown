@@ -1,10 +1,11 @@
 import React from 'react';
 import Orders from '../components/Orders';
+import LoginCheck from '../components/LoginCheck';
 
 const OrdersPage = props => (
-	<div>
+	<LoginCheck>
 		<Orders />
-	</div>
+	</LoginCheck>
 );
 
 export default OrdersPage;
