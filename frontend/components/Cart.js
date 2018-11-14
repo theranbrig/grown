@@ -8,11 +8,11 @@ import SignOut from './SignOut';
 import { Button, Icon, Segment, List, Label } from 'semantic-ui-react';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import Link from 'next/link';
-import BuyMe from './BuyMe';
 import RemoveProduct from './RemoveCartProduct';
 import AddToCart from './AddToCart';
 import AddAnother from './AddAnother';
 import RemoveOne from './RemoveOne';
+import SubmitPayment from './SubmitPayment';
 
 const LOCAL_STATE_QUERY = gql`
 	query {
@@ -85,7 +85,12 @@ const Cart = () => (
 							}, 0)}
 						</h3>
 					</footer>
-					<BuyMe />
+					<SubmitPayment>
+						<Button icon labelPosition="right" className="buy-button">
+							Buy Now
+							<Icon name="cart plus" />
+						</Button>
+					</SubmitPayment>
 					<SignOut />
 				</CartStyles>
 			);
