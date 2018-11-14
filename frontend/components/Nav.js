@@ -19,9 +19,9 @@ const Nav = () => (
 					</Link>
 					{me && (
 						<>
-							{/* <Link href="/browse">
-								<a>Orders</a>
-							</Link> */}
+              <Link href="/orders">
+                <a>Orders</a>
+              </Link>
 							<Mutation mutation={TOGGLE_CART_MUTATION}>
 								{toggleCart => (
 									<button onClick={toggleCart}>
@@ -34,9 +34,6 @@ const Nav = () => (
 					)}
 					{/*<Link href="/markets">
 			<a>Markets</a>
-			</Link>
-			<Link href="/orders">
-			<a>Orders</a>
 			</Link>
 			<Link href="/cart">
 			<a>Cart</a>

@@ -22,7 +22,8 @@ const Query = {
 		if (!ctx.request.userId) {
 			throw new Error('You are not logged in.');
 		}
-		const order = await ctx.db.query.order({ where: { id: id.args } }, info);
+		const order = await ctx.db.query.order({ where: { id: args.id } }, info);
+		console.log(order);
 		const ownsOrder = order.user.id === ctx.request.userId;
 		if (!ownsOrder) {
 			throw new Error('You are not allowed to view that.');
