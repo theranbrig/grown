@@ -6,6 +6,8 @@
 
 Grown is a full-stack JavaScript project built upon React and GraphQL. It is a place for farmers to sell their products online and for consumers to order products online for later pick up at farmer markets. It is built primarily with React and Apollo on the client side, with GraphQL Yoga amd Prisma connected on the backend.
 
+As of right now the farms are available as stores where users can order products.  Markets and search are planned features for the next sprint and are coming later.  Also I plan on updating the styling in order to fit in more with the feel of the app and product.  It is a work in progress still.  I welcome feedback and suggestions.
+
 
 ## Installation
 
@@ -75,8 +77,9 @@ Fill in the `variables.env` file with your own information.  The `PRISMA_ENDPOIN
 ```env
 FRONTEND_URL="http://localhost:7777"
 PRISMA_ENDPOINT="YOUR PRISMA ENDPOINT HERE FROM PRISMA.YML FILE THAT WAS CREATED"
-PRISMA_SECRET="MAKE UP YOUR OWN SECRET"
+PRISMA_SECRET="MAKEUPYOUROWNSECRET"
 PORT=4444
+STRIPE_SECRET="PRIVATEKEYNEEDEDFORDEPLOY"
 ```
 
 In the `prisma.yml` file be sure to include the following data.
@@ -121,6 +124,12 @@ npm run dev
 Your app should now be visible on [localhost:7777](http://localhost:7777/).
 
 Make sure you are running both the `frontend` and `backend` folders.
+
+## Screenshots
+
+![Home](https://i.imgur.com/pskodPu.png?1)
+![Browse](https://i.imgur.com/9rH73QC.png?2)
+![Farm and Cart](https://i.imgur.com/wBnKHN2.png?1)
 
 ## Built With
 
