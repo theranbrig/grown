@@ -4,7 +4,6 @@ import { endpoint, prodEndpoint } from '../config';
 import { LOCAL_STATE_QUERY } from '../components/Cart';
 
 function createClient({ headers }) {
-	console.log("headers", headers);
 	// Set up apollo client
 	return new ApolloClient({
 		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
@@ -14,7 +13,7 @@ function createClient({ headers }) {
 				fetchOptions: {
 					credentials: 'include'
 				},
-				headers
+				...headers
 			});
 		},
 		// Local Data
