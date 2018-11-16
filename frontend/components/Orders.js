@@ -106,7 +106,7 @@ class Orders extends Component {
 									<div className="order-list">
 										<List divided relaxed>
 											{orders.map(order => (
-												<Segment textAlign="left" className="order-box">
+												<Segment textAlign="left" className="order-box" key={order.id}>
 													<Link
 														href={{
 															pathname: '/order',
@@ -139,7 +139,7 @@ class Orders extends Component {
 																	Order Summary
 																</h3>
 																{order.items.map(item => (
-																	<Segment>{item.name}</Segment>
+																	<Segment key={item.id}>{item.name}</Segment>
 																))}
 															</Segment.Group>
 														</a>
