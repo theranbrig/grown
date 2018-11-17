@@ -7,13 +7,12 @@ function createClient({ headers }) {
 	// Set up apollo client
 	return new ApolloClient({
 		uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
-		credentials: 'include',
-		request: async operation => {
+		request: operation => {
 			operation.setContext({
 				fetchOptions: {
 					credentials: 'include'
 				},
-				...headers
+				headers
 			});
 		},
 		// Local Data
@@ -21,7 +20,7 @@ function createClient({ headers }) {
 			resolvers: {
 				Mutation: {
 					toggleCart(_, variables, { cache }) {
-						// read the cartOpen value from the cache
+						// Read the cartOpen value from the cache
 						const { cartOpen } = cache.readQuery({
 							query: LOCAL_STATE_QUERY
 						});
