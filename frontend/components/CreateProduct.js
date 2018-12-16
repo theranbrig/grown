@@ -94,6 +94,7 @@ class CreateProduct extends Component {
                     <label htmlFor="name">
                       Product Name
                       <input
+                        required
                         type="text"
                         name="name"
                         id="name"
@@ -106,13 +107,15 @@ class CreateProduct extends Component {
                   </Form.Field>
                   <Form.Field width={6}>
                     <label htmlFor="description">
-                      Product Description
+                      Product Description - {100 - this.state.description.length} Remaining
                       <input
+                        required
                         type="text"
                         name="description"
                         id="description"
                         placeholder="100 Character Limit"
-                        maxLength="100"
+                        minLength={5}
+                        maxLength={100}
                         value={this.state.description}
                         onChange={this.saveToState}
                       />
@@ -122,6 +125,7 @@ class CreateProduct extends Component {
                     <label htmlFor="price">
                       Price
                       <Input
+                        required
                         labelPosition="right"
                         type="number"
                         name="price"

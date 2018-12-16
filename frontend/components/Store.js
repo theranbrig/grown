@@ -87,7 +87,6 @@ class Store extends Component {
                           </Table.Cell>
                           {me && me.id === product.farm.user.id && (
                             <React.Fragment>
-                              ' '
                               <Table.Cell textAlign="right" width={1}>
                                 <Link
                                   href={{
@@ -100,11 +99,9 @@ class Store extends Component {
                                   </a>
                                 </Link>
                               </Table.Cell>
-                              ' '
                               <Table.Cell textAlign="right" width={1} className="delete-button">
                                 <DeleteProductButton id={product.id} />
                               </Table.Cell>
-                              ' '
                             </React.Fragment>
                           )}
                         </Table.Row>
