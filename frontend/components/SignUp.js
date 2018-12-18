@@ -65,6 +65,7 @@ class SignUp extends Component {
                             e.preventDefault();
                             await signup();
                             this.setState({ name: '', email: '', password: '' });
+                            Router.push('/browse');
                           }}
                         >
                           <Form.Group>
@@ -72,6 +73,9 @@ class SignUp extends Component {
                               <label htmlFor="name">
                                 Name
                                 <input
+                                  required
+                                  minLength={5}
+                                  maxLength={20}
                                   id="name"
                                   type="text"
                                   name="name"
@@ -87,6 +91,7 @@ class SignUp extends Component {
                               <label htmlFor="email">
                                 Email
                                 <input
+                                  required
                                   id="email"
                                   type="text"
                                   name="email"
@@ -102,6 +107,9 @@ class SignUp extends Component {
                               <label htmlFor="password">
                                 Password
                                 <input
+                                  required
+                                  minLength={8}
+                                  maxLength={20}
                                   id="password"
                                   type="password"
                                   name="password"
