@@ -1,6 +1,6 @@
 # Grown
 
-> Connecting Communities to their Local Farms.
+> Connecting Communities to their Local Farms Organically.
 
 ![Logo](https://i.imgur.com/Gcwggjm.png)
 
