@@ -19,3 +19,5 @@ frontend/.env
 backend/prisma.yml
 frontend/config.js
 
+frontend/next.config.js
+replacements.txt
