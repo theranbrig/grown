@@ -5,7 +5,9 @@ import React from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import styled from 'styled-components';
 import Geocode from 'react-geocode';
-import { GOOGLE_GEOCODE_API_KEY, GOOGLE_MAPS_API_KEY } from '../config';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 const MapDiv = styled.div`
   margin: 0 auto;
@@ -25,13 +27,11 @@ class MapContainer extends React.Component {
   };
 
   componentDidMount() {
-    Geocode.setApiKey(GOOGLE_GEOCODE_API_KEY);
+    Geocode.setApiKey(publicRuntimeConfig.GOOGLE_GEOCODE_API_KEY);
     Geocode.enableDebug();
     Geocode.fromAddress(this.props.location).then(
       response => {
-        console.log(response.results[0]);
         const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
         this.setState({ lat, lng });
       },
       error => {
@@ -84,5 +84,5 @@ class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: GOOGLE_MAPS_API_KEY,
+  apiKey: publicRuntimeConfig.GOOGLE_MAPS_API_KEY,
 })(MapContainer);
