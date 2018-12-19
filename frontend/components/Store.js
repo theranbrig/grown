@@ -42,7 +42,7 @@ class Store extends Component {
           <Query query={PRODUCTS_QUERY} variables={{ farmId: this.props.id }}>
             {({ data, error }) => {
               if (error) return <p>Error...</p>;
-              if (data.products.length === 0)
+              if (!data.products)
                 return (
                   <StoreStyling>
                     <Table striped stackable>

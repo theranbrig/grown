@@ -6,7 +6,6 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import styled from 'styled-components';
 import Geocode from 'react-geocode';
 import getConfig from 'next/config';
-import { GOOGLE_GEOCODE_API_KEY } from '../config';
 
 const { publicRuntimeConfig } = getConfig();
 

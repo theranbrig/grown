@@ -48,15 +48,13 @@ const IndividualFarm = props => (
                   <Grid.Column mobile={16} computer={8}>
                     <Image src={farm.image} alt={farm.name} centered />
                     <h3>{farm.tagline}</h3>
+                    <h3>Explore these great products and more.</h3>
                     <Query query={PRODUCTS_QUERY} variables={{ farmId: farm.id }} pollInterval={1000 * 60 * 5}>
-                      {/* eslint-disable-next-line no-shadow */}
-                      {({ data, error }) => (
-                        <ul>
-                          {data.products.slice(0, 5).map(product => (
-                            <li key={product.id}>{product.name}</li>
-                          ))}
-                        </ul>
-                      )}
+                      {({ data, error }) => {
+                        if (data.products.length === 0) return <h3>Great Products Coming Soon!</h3>;
+                        const productList = data.products.slice(0, 5);
+                        return productList.map(product => <h3>{product.name}</h3>);
+                      }}
                     </Query>
                   </Grid.Column>
                   <Grid.Column mobile={16} computer={8}>
