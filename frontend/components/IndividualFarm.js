@@ -61,7 +61,6 @@ const IndividualFarm = props => (
                     <div className="info-box">
                       <div className="text-info">
                         <h4>{farm.name}</h4>
-
                         <p>
                           <Icon name="map" />
                           {farm.location}
