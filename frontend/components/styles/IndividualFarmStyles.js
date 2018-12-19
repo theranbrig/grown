@@ -74,6 +74,12 @@ const StyledFarmInfo = styled.div`
   .phone-email {
     padding: 7px 0;
   }
+  div.down-arrow {
+    text-align: center;
+    i {
+      font-size: 4rem;
+    }
+  }
 `;
 
 export default StyledFarmInfo;

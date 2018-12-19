@@ -41,8 +41,8 @@ class Store extends Component {
         {({ data: { me } }) => (
           <Query query={PRODUCTS_QUERY} variables={{ farmId: this.props.id }}>
             {({ data, error }) => {
-              if (error) return <p>Error...</p>;
-              if (!data.products)
+              const { products } = data;
+              if (products.length === 0)
                 return (
                   <StoreStyling>
                     <Table striped stackable>
@@ -75,7 +75,7 @@ class Store extends Component {
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                      {data.products.map(product => (
+                      {products.map(product => (
                         <Table.Row key={product.id}>
                           <Table.Cell width={3}>{product.name}</Table.Cell>
                           <Table.Cell width={7}>{product.description}</Table.Cell>
