@@ -51,7 +51,7 @@ const IndividualFarm = props => (
                     <h3>Explore these great products and more.</h3>
                     <Query query={PRODUCTS_QUERY} variables={{ farmId: farm.id }} pollInterval={1000 * 60 * 5}>
                       {({ data, error }) => {
-                        if (data.products.length === 0) return <h3>Great Products Coming Soon!</h3>;
+                        if (data.products.length === 0 || !data.products) return <h3>Great Products Coming Soon!</h3>;
                         const productList = data.products.slice(0, 5);
                         return productList.map(product => <h3>{product.name}</h3>);
                       }}
