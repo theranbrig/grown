@@ -11,7 +11,9 @@ function createClient({ headers }) {
         fetchOptions: {
           credentials: 'include',
         },
-        headers: { cookie: headers && headers.cookie },
+        headers: {
+          cookie: headers && headers.cookie, // NOTE: client-side headers is undefined!
+        },
       });
     },
     // local data
