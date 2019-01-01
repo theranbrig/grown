@@ -39,7 +39,7 @@ class Store extends Component {
     return (
       <User>
         {({ data: { me } }) => (
-          <Query query={PRODUCTS_QUERY} variables={{ farmId: this.props.id }}>
+          <Query query={PRODUCTS_QUERY} variables={{ farmId: this.props.id }} pollInterval={10000}>
             {({ data, error }) => {
               const { products } = data;
               if (products.length === 0)

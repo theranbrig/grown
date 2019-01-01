@@ -46,7 +46,7 @@ const Farms = props => (
       </Link>
     </div>
     <Grid container centered textAlign="center">
-      <Query query={ALL_FARMS_QUERY} variables={{ skip: props.page * perPage - perPage }} pollInterval={30000}>
+      <Query query={ALL_FARMS_QUERY} variables={{ skip: props.page * perPage - perPage }} pollInterval={5000}>
         {({ data, error, loading }) => {
           if (error) return <Message error header="Oops...Something Went Awry" content={error.message} compact />;
           if (loading) return <Loader active inline />;

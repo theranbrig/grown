@@ -32,7 +32,7 @@ const INDIVIDUAL_FARM_QUERY = gql`
 const IndividualFarm = props => (
   <User>
     {({ data: { me } }) => (
-      <Query query={INDIVIDUAL_FARM_QUERY} variables={{ id: props.id }} pollInterval={100000}>
+      <Query query={INDIVIDUAL_FARM_QUERY} variables={{ id: props.id }} pollInterval={5000}>
         {({ data, loading, error }) => {
           if (loading) return <Loader active inline />;
           if (error) return <p>Error...</p>;
