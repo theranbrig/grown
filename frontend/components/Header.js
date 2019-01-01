@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Cart from './Cart';
 import User from './User';
 import StyledHeader, { Logo } from './styles/HeaderStyles';
+import AutoComplete from './Search';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -28,6 +29,7 @@ const Header = () => (
         </div>
         <Nav />
       </Logo>
+      <AutoComplete />
     </div>
     <User>{({ data: { me } }) => me && <Cart />}</User>
   </StyledHeader>

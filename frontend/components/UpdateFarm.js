@@ -112,10 +112,14 @@ class UpdateFarm extends Component {
           return (
             <Grid>
               <FormStyling>
-                {this.state.name ? <h1>{this.state.name}</h1> : <h1>{farm.name}</h1>}
-                <button type="button" onClick={this.backToPage}>
-                  Return to {this.state.name ? this.state.name : farm.name}
-                </button>
+                {this.state.name ? (
+                  <h1>Edit {this.state.name.toUpperCase()}</h1>
+                ) : (
+                  <h1>Edit {farm.name.toUpperCase()}</h1>
+                )}
+                <Button type="button" onClick={this.backToPage}>
+                  Return to {this.state.name ? this.state.name.toUpperCase() : farm.name.toUpperCase()}
+                </Button>
                 <Mutation mutation={UPDATE_FARM_MUTATION} variables={this.state}>
                   {(updateFarm, { loading, error }) => {
                     if (error) return <Error error={error} />;

@@ -32,7 +32,7 @@ const INDIVIDUAL_FARM_QUERY = gql`
 const IndividualFarm = props => (
   <User>
     {({ data: { me } }) => (
-      <Query query={INDIVIDUAL_FARM_QUERY} variables={{ id: props.id }} pollInterval={1000 * 60 * 5}>
+      <Query query={INDIVIDUAL_FARM_QUERY} variables={{ id: props.id }} pollInterval={100000}>
         {({ data, loading, error }) => {
           if (loading) return <Loader active inline />;
           if (error) return <p>Error...</p>;
@@ -40,7 +40,7 @@ const IndividualFarm = props => (
           return (
             <StyledFarmInfo>
               <div className="farm-header">
-                <h2>{farm.name}</h2>
+                <h2>{farm.name.toUpperCase()}</h2>
                 <h3>Explore and Shop</h3>
               </div>
               <Grid container>
@@ -58,10 +58,10 @@ const IndividualFarm = props => (
                   <Grid.Column mobile={16} computer={8}>
                     <div className="info-box">
                       <div className="text-info">
-                        <h4>{farm.name}</h4>
+                        <h4>{farm.name.toUpperCase()}</h4>
                         <p>
                           <Icon name="map" />
-                          {farm.location}
+                          {farm.location.toUpperCase()}
                         </p>
                         <p>{farm.description}</p>
                         <div className="phone-email">

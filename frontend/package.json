@@ -21,6 +21,7 @@
 		"babel-plugin-styled-components": "^1.7.1",
 		"casual": "^1.5.19",
 		"date-fns": "^2.0.0-alpha.7",
+		"debounce": "^1.2.0",
 		"dotenv": "^6.2.0",
 		"downshift": "^2.2.3",
 		"enzyme": "^3.6.0",

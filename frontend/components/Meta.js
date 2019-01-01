@@ -9,7 +9,7 @@ const Meta = () => (
     <title>GROWN</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato|Michroma" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Michroma|Lato" rel="stylesheet" />
   </Head>
 );
 
