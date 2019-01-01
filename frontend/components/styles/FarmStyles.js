@@ -28,23 +28,24 @@ const FarmInfo = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 70%;
+    width: 100%;
     color: ${props => props.theme.offWhite};
-    text-shadow: 1px 1px 2px ${props => props.theme.black};
+    text-shadow: 2px 2px 6px ${props => props.theme.darkBlue};
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid ${props => props.theme.orange};
     h3 {
       width: 100%;
-      margin: 0 0 0 10px;
+      padding-left: 10px !important;
       font-family: 'Michroma', sans-serif !important;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       padding: 10px 0;
       letter-spacing: 0.15rem;
       line-height: 2rem;
-      border-bottom: 2px solid ${props => props.theme.orange};
     }
     h4,
     p {
       margin: 0;
-      padding: 0 0 0 10px;
+      padding: 0 0 5px 10px;
       font-family: 'Lato', sans-serif;
       font-size: 1.2rem;
       letter-spacing: 0.05rem;

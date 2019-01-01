@@ -23,7 +23,7 @@ const NavStyles = styled.ul`
     border: 0;
     text-decoration: none;
     color: #093c64;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.2rem;
     font-family: 'Michroma', sans-serif;
     border-right: 1px solid ${props => props.theme.darkBlue};
     cursor: pointer;
@@ -67,7 +67,7 @@ const NavStyles = styled.ul`
     }
   }
   @media (max-width: 1300px) {
-    border-top: 1px solid ${props => props.theme.lightgrey};
+    border-top: 1px solid ${props => props.theme.mediumBlue};
     width: 100%;
     justify-content: center;
     font-size: 1rem;

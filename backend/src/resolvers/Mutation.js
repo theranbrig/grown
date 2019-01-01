@@ -12,6 +12,8 @@ const Mutations = {
       throw new Error('You must be logged in to do that!');
     }
     // Create Item
+    const properName = args.name.toLowerCase();
+    const properLocation = args.name.toLowerCase();
     const farm = ctx.db.mutation.createFarm(
       {
         data: {
@@ -21,6 +23,8 @@ const Mutations = {
               id: ctx.request.userId,
             },
           },
+          name: properName,
+          location: properLocation,
           ...args,
         },
       },
@@ -33,7 +37,12 @@ const Mutations = {
     if (!ctx.request.userId) {
       throw new Error('You must be logged in to do that!');
     }
-
+    if (args.name) {
+      args.name = args.name.toLowerCase();
+    }
+    if (args.location) {
+      args.location = args.location.toLowerCase();
+    }
     // Create Updates
     const updates = { ...args };
     console.log(updates);

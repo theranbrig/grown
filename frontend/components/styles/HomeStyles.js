@@ -50,21 +50,25 @@ const MainText = styled.div`
   }
   h1 {
     font-family: 'Michroma', san-serif;
+    letter-spacing: 0.2rem;
     color: ${props => props.theme.darkBlue};
-    font-size: 4rem;
-    text-shadow: 1px 1px 4px ${props => props.theme.offWhite};
+    font-size: 5rem;
+    text-shadow: 2px 2px 8px ${props => props.theme.offWhite};
     @media (max-width: 750px) {
-      font-size: 2rem;
-      padding: 0;
+      font-size: 3rem;
+      padding: 12px 0;
     }
   }
   p {
     font-family: 'Michroma', sans-serif;
+    letter-spacing: 0.2rem;
     color: ${props => props.theme.darkBlue};
     font-size: 2rem;
-    text-shadow: 1px 1px 3px ${props => props.theme.offWhite};
+    text-shadow: 2px 2px 8px ${props => props.theme.offWhite};
     @media (max-width: 768px) {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      width: 80%;
+      margin-left: 10%;
     }
   }
 `;

@@ -22,10 +22,10 @@ class Farm extends Component {
         <FarmInfo className="wow fadeIn" data-wow-duration="2s">
           <Image src={farm.image} size="large" />
           <div className="farm-info">
-            <h3>{farm.name}</h3>
+            <h3>{farm.name.toUpperCase()}</h3>
             <p>
               <Icon name="location arrow" />
-              {farm.location}
+              {farm.location.toUpperCase()}
             </p>
           </div>
           <div className="farm-link">
@@ -36,7 +36,7 @@ class Farm extends Component {
               }}
             >
               <a>
-                Explore {farm.name} <i className="arrow alternate circle right outline icon" />
+                Explore {farm.name.toUpperCase()} <i className="arrow alternate circle right outline icon" />
               </a>
             </Link>
           </div>

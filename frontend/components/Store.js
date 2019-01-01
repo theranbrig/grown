@@ -49,7 +49,7 @@ class Store extends Component {
                       <Table.Header>
                         <Table.Row>
                           <Table.HeaderCell colSpan="6">
-                            {this.props.name} Store - Add Items to your Cart
+                            {this.props.name.toUpperCase()} Store - Add Items to your Cart
                           </Table.HeaderCell>
                         </Table.Row>
                       </Table.Header>
@@ -70,7 +70,7 @@ class Store extends Component {
                     <Table.Header>
                       <Table.Row>
                         <Table.HeaderCell colSpan="6">
-                          {this.props.name} Store - Add Items to your Cart
+                          {this.props.name.toUpperCase()} Store - Add Items to your Cart
                         </Table.HeaderCell>
                       </Table.Row>
                     </Table.Header>
