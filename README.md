@@ -126,9 +126,9 @@ Make sure you are running both the `frontend` and `backend` folders.
 
 ## Screenshots
 
-![Home](https://i.imgur.com/pskodPu.png?1)
-![Browse](https://i.imgur.com/9rH73QC.png?2)
-![Farm and Cart](https://i.imgur.com/wBnKHN2.png?1)
+![Home](https://i.imgur.com/eBabmvL.png?1)
+![List](https://i.imgur.com/kQF1X9z.png?1)
+![Farm](https://i.imgur.com/BmMq37W.png?1)
 
 ## Built With
 
