@@ -4,9 +4,17 @@
 
 ![Logo](https://i.imgur.com/Gcwggjm.png)
 
-Grown is a full-stack JavaScript project built upon React and GraphQL. It is a place for farmers to sell their products online and for consumers to order products online for later pick up at farmer markets. It is built primarily with React and Apollo on the client side, with GraphQL Yoga amd Prisma connected on the backend.
+Grown is a full-stack JavaScript project built upon React and GraphQL. It is a place for farmers to sell their products online and for consumers to order products online for later pick up at farmer markets. It is built primarily with React and Apollo on the client side, with GraphQL Yoga amd Prisma connected on the backend. Purchasing is done via stripe.  All mutations and queries are built with Apollo Client running on Server Side Rendered Next.js React on the front-end.
 
 As of right now the farms are available as stores where users can order products. Markets and search are planned features for the next sprint and are coming later. Also I plan on updating the styling in order to fit in more with the feel of the app and product. It is a work in progress still. I welcome feedback and suggestions.
+
+There is known issue right now with the deployed version.  Because both the frontend and backend are deployed on Heroku there are issues with cookies and the headers between with CORS.  Right now a refresh will logout the user.  This will be fixed at a later date when I can rewrite the Apollo Boost client as an Apollo Client.  Sorry for the inconvenience.  It is a known issue.
+
+## Screenshots
+
+![Home](https://i.imgur.com/eBabmvL.png?1)
+![List](https://i.imgur.com/kQF1X9z.png?1)
+![Farm](https://i.imgur.com/BmMq37W.png?1)
 
 ## Installation
 
@@ -124,11 +132,6 @@ Your app should now be visible on [localhost:7777](http://localhost:7777/).
 
 Make sure you are running both the `frontend` and `backend` folders.
 
-## Screenshots
-
-![Home](https://i.imgur.com/eBabmvL.png?1)
-![List](https://i.imgur.com/kQF1X9z.png?1)
-![Farm](https://i.imgur.com/BmMq37W.png?1)
 
 ## Built With
 
