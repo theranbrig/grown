@@ -98,6 +98,11 @@ const Orders = () => (
               Review Recent <span>GROWN</span> Orders
             </h2>
           </div>
+          {!orders.length && (
+            <div>
+              <h2>You have no recent orders.</h2>
+            </div>
+          )}
           <Grid centered container>
             <Grid.Column>
               <div className="order-list">

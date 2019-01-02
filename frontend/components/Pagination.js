@@ -18,7 +18,7 @@ const PAGINATION_QUERY = gql`
 `;
 
 const Pagination = props => (
-  <Query query={PAGINATION_QUERY}>
+  <Query query={PAGINATION_QUERY} pollInterval={10000}>
     {({ data, loading, error }) => {
       if (error) {
         console.log(error);
