@@ -94,7 +94,7 @@ const FullOrder = props => (
                             {item.id}
                           </Table.Cell>
                           <Table.Cell collapsing>{item.name}</Table.Cell>
-                          <Table.Cell collapsing>{item.product.farm.name}</Table.Cell>
+                          <Table.Cell collapsing>{item.product.farm.name.toUpperCase()}</Table.Cell>
                           <Table.Cell textAlign="right">
                             {item.quantity} &times; {item.price} = ${item.quantity * item.price}
                           </Table.Cell>

@@ -72,6 +72,7 @@ const CartStyles = styled.div`
   }
   div.description {
     font-size: 1.2rem;
+    text-transform: uppercase;
   }
   button.signout-button {
     margin-top: 50px;
