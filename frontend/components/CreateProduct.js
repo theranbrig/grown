@@ -13,10 +13,14 @@ const CreateProductStyling = styled.div`
   button {
     height: 38px;
     background-color: ${props => props.theme.lightBlue} !important;
-    margin-top: 23px !important;
+    margin-top: 18px !important;
   }
   i {
     font-size: 1rem;
+  }
+  label {
+    padding: 0;
+    margin-bottom: 0 !important;
   }
 `;
 const CREATE_PRODUCT_MUTATION = gql`
